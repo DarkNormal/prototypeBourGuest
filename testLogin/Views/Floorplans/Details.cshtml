@@ -1,0 +1,42 @@
+﻿@model testLogin.Models.Floorplan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Floorplan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tableHeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tableHeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tableWidth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tableWidth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tableObjects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tableObjects)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

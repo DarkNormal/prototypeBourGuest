@@ -1,0 +1,151 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 100%;
+
+  }
+}
+.btn-success {
+    background-color: #61ba9e;
+    border-color: #4fb393;
+}
+
+/* drag container*/
+#drag {
+	border: 2px dashed LightBlue;
+	/*width: 330px;*/
+    overflow:hidden;
+	margin: auto;
+    margin-top:10px;
+}
+		/* left container */
+		#drag #left {
+			float: left;
+			width: 110px;
+		}
+		/* right container */
+		#drag #right {
+		  	display: table;
+		    table-layout: auto;
+			/* align div to the right */
+			margin-left: auto;
+			
+		}
+
+
+/* DIV object */
+.drag {
+	margin: auto;
+    margin-top:2px;
+	text-align: center;
+    height: 60px;
+    width:60px;
+	line-height: 25px;
+    background-color: #297dc3;
+	font-size: 10pt; /* needed for cloned object */
+	/* round corners */
+	border-radius:0 0 4px 4px; /* Opera, Chrome */
+	-moz-border-radius:0 0 4px 4px; /* FF */
+	margin-bottom: 2px;
+}
+.stool {
+    border-color: aquamarine;
+    background-color: #0cc184;
+}
+.rTable {
+    border-color: LightBlue;
+    background-color:#6A93D4;
+}
+.chair {
+    border-color: #ffc301;
+    background-color:#ffa400;
+}
+.sqTable{
+    border-color: #940900;
+    background-color:red;
+
+}
+/* tables */
+div#drag table {
+	background-color: #eee;
+	border-collapse: collapse;
+	margin: 5px;
+}
+div#drag #right {
+	margin:auto;
+}
+	/* table cells */
+	div#drag td {
+		border: 1px solid white;
+		text-align: center;
+		font-size: 10pt;
+		padding: 0;
+	}
+	table#table1 td {
+		height: 60px;
+	}
+	table#table2 td {
+		height: 122px;
+        color:#fff;
+	}
+
+
+/* green, orange and blue DIV elements */
+.green {
+	border: 1px solid #499B33;
+}
+.orange {
+	border: 1px solid #BF6A30;
+}
+.blue {
+	border: 1px solid SteelBlue;
+}
+
+/* message below tables */
+#message {
+	padding-left: 10px;
+	color: #6A93D4;
+	height: 100%;
+	padding-top: 20px;
+}
+
+/* single content cells (with clone objects on the left) */
+.single {
+	background-color: #e0e0e0;
+    
+}
+
+/* trash cell */
+.trash {
+	color: white;
+	background-color: SteelBlue;
+	height: 26px;
+}
+    .trash.custom {
+        background-color:#d9534f;
+    }

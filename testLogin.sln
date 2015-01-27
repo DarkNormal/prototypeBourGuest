@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testLogin", "testLogin\testLogin.csproj", "{766C4BA3-BC36-4E95-9B00-F2E7AA010DB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{FB873973-5552-475B-BB0B-EB61DBCA6DB7}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{3313B0F0-DB5C-4B2B-A3F0-273111A0D0BF}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\testLogin-WAWS-dev.json = PublishScripts\Configurations\testLogin-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02FF729A-E6E9-4C3F-9EF1-FEC905BA0D9A}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials-Settings.json = WebEssentials-Settings.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{766C4BA3-BC36-4E95-9B00-F2E7AA010DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766C4BA3-BC36-4E95-9B00-F2E7AA010DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766C4BA3-BC36-4E95-9B00-F2E7AA010DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766C4BA3-BC36-4E95-9B00-F2E7AA010DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3313B0F0-DB5C-4B2B-A3F0-273111A0D0BF} = {FB873973-5552-475B-BB0B-EB61DBCA6DB7}
+	EndGlobalSection
+EndGlobal

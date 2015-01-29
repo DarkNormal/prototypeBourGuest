@@ -10,11 +10,10 @@ namespace testLogin.Models
 {
     public class Floorplan
     {
-        [Key]
-        public int userID { get; set; }
+        [Key]public int userID { get; set; }
         public int tableHeight { get; set; }
         public int tableWidth { get; set; }
-        public ICollection<tableObject> tableObjects { get; set; }
+        //public ICollection<tableObject> tableObjects { get; set; }
 
     }
 }

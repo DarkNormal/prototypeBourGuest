@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Web;
+using System.Globalization;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace testLogin.Models
 {
-    class tableObject
+    public class tableObject
     {
-        [key]
+        [Key]
         int userID { get; set; }
+
         int xcoord { get; set; }
         int ycoord { get; set; }
         int objType { get; set; }

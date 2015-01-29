@@ -17,7 +17,7 @@ namespace testLogin.Controllers
         // GET: Floorplans
         public ActionResult Index()
         {
-            return View(db.Floorplans.ToList());
+            return View();
 
         }
 

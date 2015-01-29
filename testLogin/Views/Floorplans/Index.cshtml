@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<testLogin.Models.Floorplan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Floorplan";
 }
 
 <h2>Index</h2>
@@ -9,37 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tableHeight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tableWidth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tableObjects)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tableHeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tableWidth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tableObjects)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.userID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.userID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.userID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="jumbotron">
+    <h1>MAKE YOUR OWN FLOORPLAN</h1>
+    <p>At B-OurGuest, we give you the ability to create and maintain your own floorplan easily.</p>
+    <p>Changes are instant, across the website, database and mobvle application</p>
+</div>

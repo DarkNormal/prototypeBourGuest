@@ -1,6 +1,7 @@
 ﻿/* enable strict mode */
 "use strict";
 
+
 function deleteTable() {
     $(document).ready(function () {
         $("#table2").remove();

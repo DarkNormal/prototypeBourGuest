@@ -59,6 +59,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -173,9 +175,27 @@
     <Compile Include="Helpers\Bootstrap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Floorplan.cs" />
+    <Compile Include="Models\Floorplan.cs">
+      <DependentUpon>floorplanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\floorplanModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>floorplanModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\floorplanModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>floorplanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\floorplanModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>floorplanModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\tableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -196,6 +216,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Themes\Stock\bootstrap-theme.css.map" />
     <Content Include="Content\Themes\Stock\bootstrap.css.map" />
+    <EntityDeploy Include="Models\floorplanModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>floorplanModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\floorplanModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>floorplanModel.edmx</DependentUpon>
+      <LastGenOutput>floorplanModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\floorplanModel.edmx.diagram">
+      <DependentUpon>floorplanModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\floorplanModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>floorplanModel.edmx</DependentUpon>
+      <LastGenOutput>floorplanModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\testLogin.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -267,6 +304,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

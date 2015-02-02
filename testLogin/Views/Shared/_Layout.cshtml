@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - B-OurGuest</title>
     @*@Styles.Render("~/bundles/CSSBundle")*@
-    
+    @Styles.Render("~/Content/font-awesome.css")
     @{
         var theme = Session["CssTheme"] as string ?? Bootstrap.Theme.Darkly;
     }
@@ -30,7 +30,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Floorplan", "Index", "Floorplans/Index")</li>
+                    <li>@Html.ActionLink("Floorplan", "Index", "Floorplans")</li>
+                    <li>@Html.ActionLink("Restaurant", "Index", "Restaurants")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

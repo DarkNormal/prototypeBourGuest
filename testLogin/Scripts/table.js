@@ -5,6 +5,7 @@
 function deleteTable() {
     $(document).ready(function () {
         $("#table2").remove();
+        $("#message").empty();
 
     });
 }
@@ -26,9 +27,9 @@ function enableDrag() {
         alert("Pick a value from the dropdown list");
     }
     else {
-
-        var width;
-        var height;
+        alert("JS create plan enabled")
+        var width=0;
+        var height=0;
         var tabHeight, tabWidth;
         if (floorsize == "small") {
             width = 5;
@@ -49,9 +50,9 @@ function enableDrag() {
             height = 35;
         }
         tabHeight = document.getElementById("tableHeight");
-        tabHeight.value = height;
+        //tabHeight.value = height;
         tabWidth = document.getElementById("tableWidth");
-        tabWidth.value = width;
+        //tabWidth.value = width;
 
         for (var i = 0; i < width; i++) {
             var tr = document.createElement('TR');
@@ -104,12 +105,13 @@ function saveLayout() {
         //rows would be accessed using the "row" variable assigned in the for loop
         for (var j = 0, col; col = row.cells[j]; j++) {
             var tdContent = getContent('td' + i + j);
-            if (tdContent != "") {
+            //if (tdContent != "") {
                 var content = tdContent + '_c' + (j + 1) + '_r' + (i + 1);
-                message.innerHTML = message.innerHTML + '<br />' + tdContent + '_c' + (j + 1) + '_r' + (i + 1);
-                var tabObj = document.getElementById("tableObjects");
-                tabObj.value = content;
-            }
+                //message.innerHTML = message.innerHTML + '<br />' + tdContent + '_c' + (j + 1) + '_r' + (i + 1);
+                message.innerHTML = message.innerHTML + '<br />' + j + "," + i + " " + tdContent;
+                //var tabObj = document.getElementById("tableObjects");
+                //tabObj.value = content;
+           // }
             //iterate through columns
             //columns would be accessed using the "col" variable assigned in the for loop
         }

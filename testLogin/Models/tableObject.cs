@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Globalization;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+
+
 
 namespace testLogin.Models
 {
     public class tableObject
     {
-        [Key]
-        int userID { get; set; }
 
-        int xcoord { get; set; }
-        int ycoord { get; set; }
-        int objType { get; set; }
-        char available { get; set; }
+        public int tableObjectID { get; set; }
+        public int xcoord { get; set; }
+        public int ycoord { get; set; }
+        public int objType { get; set; }
+        public bool available { get; set; }
+        public int planID { get; set; }
+
+        public virtual Floorplan Floorplan { get; set; }
 
     }
 }

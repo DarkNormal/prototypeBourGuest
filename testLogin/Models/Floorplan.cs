@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Globalization;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace testLogin.Models
 {
     public class Floorplan
     {
-        [Key]public int userID { get; set; }
-        public int tableHeight { get; set; }
-        public int tableWidth { get; set; }
-        //public ICollection<tableObject> tableObjects { get; set; }
+        public int FloorplanID { get; set; }
+        public int restaurantID { get; set; }
+        public int height { get; set; }
+        public int width { get; set; }
+        public int numObjects { get; set; }
+
+
+        public virtual ICollection<tableObject> tableObjects { get; set; }
 
     }
 }

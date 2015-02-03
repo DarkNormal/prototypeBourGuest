@@ -13,9 +13,9 @@ namespace testLogin.DAL
         {
             var restaurants = new List<Restaurant>
             {
-                new Restaurant{restaurantID=1,restaurantName="Good Fellas",latitude=-6.42,longitude=53.28,wheelchair=true,vegetarian=true,type="Italian",bio="Amazing Italian food from Don Corleone"},
-                new Restaurant{restaurantID=2,restaurantName="Pita Pan",latitude=-6.25,longitude=53.34, wheelchair=false,vegetarian=true,type="Café",bio="A nice bitta pita bread is always good"},
-                new Restaurant{restaurantID=3,restaurantName="Thai Tanic",latitude=-6.48,longitude=53.29, wheelchair=false,vegetarian=false,type="Thai",bio="Wok fried everything"}
+                new Restaurant{restaurantID=1,restaurantName="Good Fellas",latitude=-6.42,longitude=53.28,wheelchair=true,vegetarian=true,type="Italian",bio="Amazing Italian food from Don Corleone", Email="mark.lordan@me.com"},
+                new Restaurant{restaurantID=2,restaurantName="Pita Pan",latitude=-6.25,longitude=53.34, wheelchair=false,vegetarian=true,type="Café",bio="A nice bitta pita bread is always good",Email="robert_kenny@outlook.com"},
+                new Restaurant{restaurantID=3,restaurantName="Thai Tanic",latitude=-6.48,longitude=53.29, wheelchair=false,vegetarian=false,type="Thai",bio="Wok fried everything",Email="thomasmurphy21@gmail.com"}
             };
             restaurants.ForEach(r => context.Restaurants.Add(r));
             context.SaveChanges();

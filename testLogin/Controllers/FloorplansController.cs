@@ -6,18 +6,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using testLogin.DAL;
 using testLogin.Models;
+
 
 namespace testLogin.Controllers
 {
     public class FloorplansController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private planContext db = new planContext();
 
         // GET: Floorplans
         public ActionResult Index()
         {
-            return View();
+            return View(db.Floorplans.ToList());
 
         }
 
@@ -47,7 +49,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userID,tableHeight,tableWidth,tableObjects")] Floorplan floorplan)
+        public ActionResult Create([Bind(Include = "FloorplanID,height,width,numObjects")] Floorplan floorplan)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +81,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userID,tableHeight,tableWidth,tableObjects")] Floorplan floorplan)
+        public ActionResult Edit([Bind(Include = "FloorplanID,height,width,numObjects")] Floorplan floorplan)
         {
             if (ModelState.IsValid)
             {

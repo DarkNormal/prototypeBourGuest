@@ -14,3 +14,40 @@
     <p>At B-OurGuest, we give you the ability to create and maintain your own floorplan easily.</p>
     <p>Changes are instant, across the website, database and mobile application</p>
 </div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numObjects)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numObjects)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FloorplanID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FloorplanID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FloorplanID })
+            </td>
+        </tr>
+    }
+
+</table>
+

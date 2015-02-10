@@ -29,9 +29,9 @@ namespace testLogin.DAL
 
             var tableObjects = new List<tableObject>
             { //objType, 0= chair, 1= square table, 2 = stool, 3 = round table
-                new tableObject{tableObjectID=1,xcoord=0,ycoord=0,objType=0,available=true,planID=1},
-                new tableObject{tableObjectID=2,xcoord=1,ycoord=0,objType=1,available=true,planID=1},
-                new tableObject{tableObjectID=3,xcoord=2,ycoord=0,objType=0,available=true,planID=1},
+                new tableObject{tableObjectID=1,xcoord=0,ycoord=0,objType=0,available=true,FloorplanID=1},
+                new tableObject{tableObjectID=2,xcoord=1,ycoord=0,objType=1,available=true,FloorplanID=1},
+                new tableObject{tableObjectID=3,xcoord=2,ycoord=0,objType=0,available=true,FloorplanID=1},
             };
             tableObjects.ForEach(r => context.tableObjects.Add(r));
             context.SaveChanges();

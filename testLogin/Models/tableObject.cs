@@ -13,7 +13,7 @@ namespace testLogin.Models
         public int ycoord { get; set; }
         public int objType { get; set; }
         public bool available { get; set; }
-        public int planID { get; set; }
+        public int FloorplanID { get; set; }
 
         public virtual Floorplan Floorplan { get; set; }
 

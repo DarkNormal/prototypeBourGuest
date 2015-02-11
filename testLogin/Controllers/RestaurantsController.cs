@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using testLogin.DAL;
 using testLogin.Models;
 
 namespace testLogin.Controllers
 {
+    [Authorize]
     public class RestaurantsController : Controller
     {
         private planContext db = new planContext();
@@ -18,7 +21,7 @@ namespace testLogin.Controllers
         // GET: Restaurants
         public ActionResult Index()
         {
-            return View(db.Restaurants.ToList());
+            return View(db.Restaurants.SqlQuery("SELECT * FROM dbo.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)));
         }
 
         // GET: Restaurants/Details/5

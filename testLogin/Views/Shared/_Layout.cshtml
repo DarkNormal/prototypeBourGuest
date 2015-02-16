@@ -31,7 +31,14 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Floorplan", "Index", "Floorplans")</li>
-                    <li>@Html.ActionLink("Restaurant", "Index", "Restaurants")</li>
+                    <li>
+                        <a href="" role="menu" data-toggle="dropdown">Restaurants <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Restaurants">Restaurant Management</a></li>
+                            <li><a href="Floorplans">Floorplans</a></li>
+                            <li><a href="Bookings">Booking Management</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

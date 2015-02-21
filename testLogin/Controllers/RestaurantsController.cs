@@ -49,8 +49,8 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "restaurantID,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "RestaurantID,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -81,8 +81,8 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "restaurantID,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "RestaurantID,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace testLogin.Controllers
 
         // POST: Restaurants/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Restaurant restaurant = db.Restaurants.Find(id);

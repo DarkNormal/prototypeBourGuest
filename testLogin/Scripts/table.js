@@ -113,5 +113,25 @@ function saveLayout() {
         }
     }
     var tabobj = document.getElementById("numObjects");
-    tabobj.value = counter;
+    //tabobj.value = counter;
+}
+
+function saveJson() {
+
+    var objectArray = new Array();
+    stringArray[0] = "item1";
+    stringArray[1] = "item2";
+    stringArray[2] = "item3";
+    var postData = { values: stringArray };
+
+    $.ajax({
+        type: "POST",
+        url: "/Home/SaveList",
+        data: postData,
+        success: function (data) {
+            alert(data.Result);
+        },
+        dataType: "json",
+        traditional: true
+    });
 }

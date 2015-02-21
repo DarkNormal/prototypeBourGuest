@@ -8,7 +8,7 @@ namespace testLogin.Models
 {
     public class Restaurant
     {
-        public int restaurantID { get; set; }
+        public int RestaurantID { get; set; }
         [Display(Name= "Restaurant Name")]
         public string restaurantName { get; set; }
         public double latitude { get; set; }

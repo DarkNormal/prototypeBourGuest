@@ -49,8 +49,7 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FloorplanID,height,width,numObjects")] Floorplan floorplan)
+        public ActionResult Create([Bind(Include = "FloorplanID,RestaurantID,height,width,numObjects")] Floorplan floorplan)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +80,7 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FloorplanID,height,width,numObjects")] Floorplan floorplan)
         {
             if (ModelState.IsValid)
@@ -110,7 +109,7 @@ namespace testLogin.Controllers
 
         // POST: Floorplans/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Floorplan floorplan = db.Floorplans.Find(id);

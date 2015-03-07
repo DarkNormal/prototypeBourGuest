@@ -22,7 +22,7 @@
                 <option value="large">Large - 20x20</option>
                 <option value="xlarge">X-Large - 35x35</option>
             </select>
-            <button type="button" class="btn btn-success" onclick="enableDrag()">Create</button>
+            <button type="button" class="btn btn-success" onclick="save()">Create</button>
             <button type="button" class="btn btn-danger" onclick="deleteTable()">Delete</button>
         </div>
         <div id="drag" onload="">
@@ -70,13 +70,7 @@
             <div id="message" class=""><br></div>
         </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.RestaurantID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RestaurantID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RestaurantID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.width, htmlAttributes: new { @class = "control-label col-md-2" })

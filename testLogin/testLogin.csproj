@@ -179,7 +179,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
-    <Compile Include="Controllers\TableObjectsController.cs" />
+    <Compile Include="Controllers\tableObjectsController.cs" />
     <Compile Include="DAL\planContext.cs" />
     <Compile Include="DAL\planInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -297,6 +297,11 @@
     <Content Include="Views\Restaurants\Details.cshtml" />
     <Content Include="Views\Restaurants\Edit.cshtml" />
     <Content Include="Views\Restaurants\Index.cshtml" />
+    <Content Include="Views\tableObjects\Create.cshtml" />
+    <Content Include="Views\tableObjects\Delete.cshtml" />
+    <Content Include="Views\tableObjects\Details.cshtml" />
+    <Content Include="Views\tableObjects\Edit.cshtml" />
+    <Content Include="Views\tableObjects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

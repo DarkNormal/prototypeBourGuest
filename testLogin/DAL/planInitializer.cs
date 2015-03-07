@@ -22,7 +22,7 @@ namespace testLogin.DAL
 
             var floorplan = new List<Floorplan>
             {
-                new Floorplan{FloorplanID=1,RestaurantID=1,height=5,width=5,numObjects=10}
+                new Floorplan{FloorplanID=1,height=5,width=5,numObjects=10}
             };
             floorplan.ForEach(r => context.Floorplans.Add(r));
             context.SaveChanges();

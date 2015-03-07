@@ -1,0 +1,58 @@
+﻿@model testLogin.Models.tableObject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tableObject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.xcoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.xcoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ycoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ycoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.available)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FloorplanID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FloorplanID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.tableObjectID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

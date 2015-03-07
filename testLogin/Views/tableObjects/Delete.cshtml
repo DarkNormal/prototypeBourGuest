@@ -1,0 +1,64 @@
+﻿@model testLogin.Models.tableObject
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tableObject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.xcoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.xcoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ycoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ycoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.available)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FloorplanID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FloorplanID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

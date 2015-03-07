@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using testLogin.DAL;
@@ -8,29 +11,126 @@ using testLogin.Models;
 
 namespace testLogin.Controllers
 {
-    public class TableObjectsController : Controller
+    public class tableObjectsController : Controller
     {
-
-
         private planContext db = new planContext();
-        [HttpPost]
-        public ActionResult NewMessage(tableObject[] newObjects , int id)
+
+        // GET: tableObjects
+        public ActionResult Index()
         {
-            //id in this case is Floorplan ID
-            for (int i = 0; i < newObjects.Length; i++)
+            return View(db.tableObjects.ToList());
+        }
+
+        // GET: tableObjects/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
             {
-                if (newObjects[i] != null)
-                {
-                    db.tableObjects.Add(newObjects[i]);
-                }
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            db.SaveChanges();
-            Restaurant restaurant = db.Restaurants.Find(id);
-            if (restaurant == null)
+            tableObject tableObject = db.tableObjects.Find(id);
+            if (tableObject == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurant);
+            return View(tableObject);
+        }
+        // GET: tableObjects/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: tableObjects/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public ActionResult Create(List<tableObject> newObjects)
+        {
+            var model = new tableObject();
+            if (ModelState.IsValid)
+            {
+                newObjects.ForEach(r => db.tableObjects.Add(r));
+                //db.tableObjects.Add(newObjects);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+        //public ActionResult Create(tableObject newObjects)
+        //{
+        //    var model = new tableObject();
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.tableObjects.Add(newObjects);
+        //        db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
+        // GET: tableObjects/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tableObject tableObject = db.tableObjects.Find(id);
+            if (tableObject == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tableObject);
+        }
+
+        // POST: tableObjects/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "tableObjectID,xcoord,ycoord,objType,available,FloorplanID")] tableObject tableObject)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tableObject).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(tableObject);
+        }
+
+        // GET: tableObjects/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tableObject tableObject = db.tableObjects.Find(id);
+            if (tableObject == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tableObject);
+        }
+
+        // POST: tableObjects/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            tableObject tableObject = db.tableObjects.Find(id);
+            db.tableObjects.Remove(tableObject);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿/* enable strict mode */
 "use strict";
 
-
 function deleteTable() {
     $(document).ready(function () {
         $("#table2").remove();  //deletes table if it exists
@@ -12,6 +11,77 @@ function deleteTable() {
 var showContent,
     getContent,
     redipsInit;
+function save() {
+    alert("JS create plan enabled");
+    var tableObjectObj = {
+        tableObjectID: "21",
+        xcoord: "5",
+        ycoord: "6",
+        objType: "1",
+        available: "true",
+        FloorplanID: "1"
+    };
+    var $objArray = [];
+    var objCreate = function (tableObjectID, xcoord, ycoord, objType, available, FloorplanID) {
+        this.tableObjectID = tableObjectID;
+        this.xcoord = xcoord;
+        this.ycoord = ycoord;
+        this.objType = objType;
+        this.available = available;
+        this.FloorplanID = FloorplanID;
+    }
+    $objArray.push(new objCreate("23", "4", "4", "3", "false", "1"));
+    $objArray.push(new objCreate("22", "2", "5", "1", "true", "1"));
+    $objArray.push(new objCreate("24", "5", "1", "5", "false", "1"));
+
+    $.ajax({
+        url: "/tableObjects/Create",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify($objArray),
+        success: function (response) {
+            response ? alert("It worked!") : alert("It didn't work.");
+        },
+
+
+    });
+    //$.ajax({
+    //    url: "/tableObjects/Create",
+    //    type: "POST",
+    //    contentType: "application/json",
+    //    data: JSON.stringify(tableObjectObj),
+    //    success: function (response) {
+    //        response ? alert("It worked!") : alert("It didn't work.");
+    //    },
+
+
+    //});
+    window.location.href = '/tableObjects/Index/';
+
+}
+//function saveObjectLayout() {
+//    alert("JS create plan enabled");
+//    var objectArray = [];
+//    objectArray["tableObjectID"] = "21";
+//    objectArray["xcoord"] = "5";
+//    objectArray["ycoord"] = "6";
+//    objectArray["objType"] = "Chair";
+//    objectArray["available"] = "true";
+//    objectArray["FloorplanID"] = "6";
+
+//    $.ajax({
+//        type: "POST",
+//        cache: false,
+//        url: "/tableObjects/Create",
+//        contentType: "application/json; charset=UTF-8",
+//        dataType: "json",
+//        traditional: true,
+//        data: {
+//            objectArray: objectArray
+//        },
+//        success: alert("POSTED")
+//    });
+//};
 
 function enableDrag() {
     deleteTable();                                              //calls delete function
@@ -116,22 +186,32 @@ function saveLayout() {
     //tabobj.value = counter;
 }
 
-function saveJson() {
+$.postify = function (value) {
+    var result = {};
 
-    var objectArray = new Array();
-    stringArray[0] = "item1";
-    stringArray[1] = "item2";
-    stringArray[2] = "item3";
-    var postData = { values: stringArray };
+    var buildResult = function (object, prefix) {
+        for (var key in object) {
 
-    $.ajax({
-        type: "POST",
-        url: "/Home/SaveList",
-        data: postData,
-        success: function (data) {
-            alert(data.Result);
-        },
-        dataType: "json",
-        traditional: true
-    });
-}
+            var postKey = isFinite(key)
+                ? (prefix != "" ? prefix : "") + "[" + key + "]"
+                : (prefix != "" ? prefix + "." : "") + key;
+
+            switch (typeof (object[key])) {
+                case "number": case "string": case "boolean":
+                    result[postKey] = object[key];
+                    break;
+
+                case "object":
+                    if (object[key].toUTCString)
+                        result[postKey] = object[key].toUTCString().replace("UTC", "GMT");
+                    else {
+                        buildResult(object[key], postKey != "" ? postKey : key);
+                    }
+            }
+        }
+    };
+
+    buildResult(value, "");
+
+    return result;
+};

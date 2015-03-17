@@ -7,7 +7,7 @@ using testLogin.Models;
 
 namespace testLogin.DAL
 {
-    public class planInitializer :System.Data.Entity. DropCreateDatabaseAlways<planContext>
+    public class planInitializer :System.Data.Entity.DropCreateDatabaseIfModelChanges<planContext>
     {
         protected override void Seed(planContext context) 
         {

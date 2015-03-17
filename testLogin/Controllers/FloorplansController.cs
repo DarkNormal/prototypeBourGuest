@@ -49,8 +49,9 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "FloorplanID,RestaurantID,height,width,numObjects")] Floorplan floorplan)
+        public ActionResult Create(Floorplan floorplan)
         {
+            floorplan.FloorplanID = db.Floorplans.OrderByDescending(t => t.FloorplanID).FirstOrDefault().FloorplanID + 1;
             if (ModelState.IsValid)
             {
                 db.Floorplans.Add(floorplan);

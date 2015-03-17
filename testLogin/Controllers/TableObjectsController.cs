@@ -45,8 +45,14 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(List<tableObject> newObjects)
+        public void Create(List<tableObject> newObjects)
         {
+            int floorplanID = db.Floorplans.OrderByDescending(t => t.FloorplanID).FirstOrDefault().FloorplanID + 1;
+            for (int i = 0; i < newObjects.Count; i++)
+            {
+                newObjects[i].FloorplanID = floorplanID;
+            }
+
             var model = new tableObject();
             if (ModelState.IsValid)
             {
@@ -54,7 +60,6 @@ namespace testLogin.Controllers
                 //db.tableObjects.Add(newObjects);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
         }
         //public ActionResult Create(tableObject newObjects)
         //{

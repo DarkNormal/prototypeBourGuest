@@ -10,7 +10,10 @@ function deleteTable() {
 }
 var showContent,
     getContent,
-    redipsInit;
+    redipsInit,
+    width,
+    height;
+
 function save() {
     alert("JS create plan enabled");
     var tableObjectObj = {
@@ -38,27 +41,17 @@ function save() {
         url: "/tableObjects/Create",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify($objArray),
         success: function (response) {
             response ? alert("It worked!") : alert("It didn't work.");
         },
-
-
+        data: JSON.stringify($objArray)
+        
     });
-    //$.ajax({
-    //    url: "/tableObjects/Create",
-    //    type: "POST",
-    //    contentType: "application/json",
-    //    data: JSON.stringify(tableObjectObj),
-    //    success: function (response) {
-    //        response ? alert("It worked!") : alert("It didn't work.");
-    //    },
-
-
-    //});
-    window.location.href = '/tableObjects/Index/';
+    window.location.href = '/Floorplans/Index/';
 
 }
+
+
 //function saveObjectLayout() {
 //    alert("JS create plan enabled");
 //    var objectArray = [];
@@ -98,9 +91,7 @@ function enableDrag() {
     }
     else {
         alert("JS create plan enabled")
-        var width,                          //creation of height X width variables
-            height,
-            tabHeight,
+        var tabHeight,
             tabWidth;
         if (floorsize == "small") {         //small floorplan size
             width = 5;
@@ -138,10 +129,12 @@ function enableDrag() {
         }
         right.appendChild(table);
         REDIPS.drag.initTables();
+        REDIPS.drag.dropMode = "single";
+        
+        
     }
 
 }
-
 // get content (DIV elements in TD)
 getContent = function (id) {
     var td = document.getElementById(id),
@@ -169,49 +162,60 @@ function saveLayout() {
     var table = document.getElementById("table2");
     var message = document.getElementById("message");
     var counter = 0;
+    var $objArray = [];
+    var objType;
+    var objCreate = function (tableObjectID, xcoord, ycoord, objType, available) {
+        this.tableObjectID = tableObjectID;
+        this.xcoord = xcoord;
+        this.ycoord = ycoord;
+        this.objType = objType;
+        this.available = available;
+    }
     for (var i = 0; i < table.rows.length; i++) {           //iterate through rows
         var row = table.rows[i];                            //rows would be accessed using the "row" variable assigned in the for loop 
         for (var j = 0, col; col = row.cells[j]; j++) {     //iterates through coloumns
             var tdContent = getContent('td' + i + j);       //gets the type of object(s) within the current td
             if (tdContent != "") {                          //checks if td is empty
                 counter++;                                  //counter for numObjects
-                var str = tdContent;
-                counter = counter + (str.split('_').length - 1);    //counts how many times underscore appears (which separates objects if 2 or more are in 1 td)
+                //var str = tdContent;
+                //counter = counter + (str.split('_').length - 1);    //counts how many times underscore appears (which separates objects if 2 or more are in 1 td)
+                if(tdContent.indexOf("seat") > -1){
+                    objType = 0;
+                }
+                else if(tdContent.indexOf("stool") > -1){
+                    objType = 1;
+                }
+                else if (tdContent.indexOf("sqT") > -1) {
+                    objType = 2;
+                }
+                else {
+                    objType = 3;
+                }
+                $objArray.push(new objCreate("001", j, i, objType, "true"));
             }
             //sets message div text to include any objects added to the table
             message.innerHTML = message.innerHTML + '<br />' + j + "," + i + " " + tdContent;
         }
     }
-    var tabobj = document.getElementById("numObjects");
-    //tabobj.value = counter;
-}
 
-$.postify = function (value) {
-    var result = {};
-
-    var buildResult = function (object, prefix) {
-        for (var key in object) {
-
-            var postKey = isFinite(key)
-                ? (prefix != "" ? prefix : "") + "[" + key + "]"
-                : (prefix != "" ? prefix + "." : "") + key;
-
-            switch (typeof (object[key])) {
-                case "number": case "string": case "boolean":
-                    result[postKey] = object[key];
-                    break;
-
-                case "object":
-                    if (object[key].toUTCString)
-                        result[postKey] = object[key].toUTCString().replace("UTC", "GMT");
-                    else {
-                        buildResult(object[key], postKey != "" ? postKey : key);
-                    }
-            }
-        }
+    var $floorplan = {
+        height: height,
+        width: width,
+        numObjects: counter
     };
+    $.ajax({
+        url: "/Floorplans/Create",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify($floorplan)
 
-    buildResult(value, "");
+    });
+    $.ajax({
+        url: "/tableObjects/Create",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify($objArray)
 
-    return result;
-};
+    });
+    window.location.href = '/Floorplans/Index/';
+}

@@ -21,7 +21,7 @@ namespace testLogin.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("planContext", throwIfV1Schema: false)
         {
         }
 

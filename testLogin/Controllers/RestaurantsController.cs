@@ -21,7 +21,7 @@ namespace testLogin.Controllers
         // GET: Restaurants
         public ActionResult Index()
         {
-            return View(db.Restaurants.SqlQuery("SELECT * FROM dbo.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)));
+            return View(db.Restaurants.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)));
         }
 
         // GET: Restaurants/Details/5
@@ -50,7 +50,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RestaurantID,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
+        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RestaurantID,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
+        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {

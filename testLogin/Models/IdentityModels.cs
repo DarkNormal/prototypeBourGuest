@@ -29,7 +29,5 @@ namespace testLogin.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<testLogin.Models.Floorplan> Floorplans { get; set; }
     }
 }

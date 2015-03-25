@@ -16,6 +16,8 @@ namespace testLogin.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.HasDefaultSchema("bourguestMob");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

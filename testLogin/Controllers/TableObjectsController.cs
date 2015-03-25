@@ -47,7 +47,7 @@ namespace testLogin.Controllers
         [HttpPost]
         public void Create(List<tableObject> newObjects)
         {
-            int floorplanID = db.Floorplans.OrderByDescending(t => t.FloorplanID).FirstOrDefault().FloorplanID + 1;
+            int floorplanID = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
             for (int i = 0; i < newObjects.Count; i++)
             {
                 newObjects[i].FloorplanID = floorplanID;

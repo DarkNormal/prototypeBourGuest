@@ -51,7 +51,7 @@ namespace testLogin.Controllers
         [HttpPost]
         public ActionResult Create(Floorplan floorplan)
         {
-            floorplan.FloorplanID = db.Floorplans.OrderByDescending(t => t.FloorplanID).FirstOrDefault().FloorplanID + 1;
+            floorplan.id = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
             if (ModelState.IsValid)
             {
                 db.Floorplans.Add(floorplan);

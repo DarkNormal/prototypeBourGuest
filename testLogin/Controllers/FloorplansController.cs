@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,6 +13,7 @@ using testLogin.Models;
 
 namespace testLogin.Controllers
 {
+    [Authorize]
     public class FloorplansController : Controller
     {
         private planContext db = new planContext();
@@ -51,7 +53,16 @@ namespace testLogin.Controllers
         [HttpPost]
         public ActionResult Create(Floorplan floorplan)
         {
-            floorplan.id = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
+            floorplan.id = 1;
+            try
+            {
+                floorplan.id = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
+            }
+            catch(NullReferenceException e)
+            {
+            }
+            var resID = db.Restaurants.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+            floorplan.restID = resID.id;
             if (ModelState.IsValid)
             {
                 db.Floorplans.Add(floorplan);
@@ -84,6 +95,8 @@ namespace testLogin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FloorplanID,height,width,numObjects")] Floorplan floorplan)
         {
+           
+
             if (ModelState.IsValid)
             {
                 db.Entry(floorplan).State = EntityState.Modified;

@@ -47,10 +47,17 @@ namespace testLogin.Controllers
         [HttpPost]
         public void Create(List<tableObject> newObjects)
         {
-            int floorplanID = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
+            int floorplanID = 0;
+            try {
+                floorplanID = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
+            }
+            catch(NullReferenceException e)
+            {
+                floorplanID = 1;
+            }
             for (int i = 0; i < newObjects.Count; i++)
             {
-                newObjects[i].FloorplanID = floorplanID;
+                newObjects[i].floorplanID = floorplanID;
             }
 
             var model = new tableObject();
@@ -92,7 +99,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tableObjectID,xcoord,ycoord,objType,available,FloorplanID")] tableObject tableObject)
+        public ActionResult Edit([Bind(Include = "id,xcoord,ycoord,objType,available,floorplanID")] tableObject tableObject)
         {
             if (ModelState.IsValid)
             {

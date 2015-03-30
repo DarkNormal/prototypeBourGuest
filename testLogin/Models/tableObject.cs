@@ -12,12 +12,12 @@ namespace testLogin.Models
     public class tableObject
     {
 
-        public int tableObjectID { get; set; }
+        public int id { get; set; }
         public int xcoord { get; set; }
         public int ycoord { get; set; }
         public int objType { get; set; }
         public bool available { get; set; }
-        public int FloorplanID { get; set; }
+        public int floorplanID { get; set; }
 
     }
 }

@@ -50,7 +50,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
+        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type1,type2,type3,openClose,bio,Email, phoneNum")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {

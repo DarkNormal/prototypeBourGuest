@@ -8,11 +8,9 @@ namespace testLogin.Models
     public class Floorplan
     {
         public int id { get; set; }
-        //public int id { get; set; }
         public int height { get; set; }
         public int width { get; set; }
         public int numObjects { get; set; }
-
-        public virtual ICollection<tableObject> tableObjects { get; set; }
+        public int restID { get; set; }
     }
 }

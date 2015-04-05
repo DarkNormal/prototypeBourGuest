@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link type="text/css"  rel="stylesheet" href="~/Content/animate.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - B-OurGuest</title>
     @*@Styles.Render("~/bundles/CSSBundle")*@
@@ -41,16 +42,19 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container">
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - B-OurGuest</p>
+            <p>Find this project, and our Android application on <a href="https://github.com/DarkNormal/prototypeBourGuest">Github!</a></p>
+            <p>Proudly developed by Mark Lordan, Robert Kenny and Thomas Murphy.</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/table.js")
+    @Scripts.Render("~/Scripts/animate-effects.js")
     @Scripts.Render("~/Scripts/redips-drag-min.js")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

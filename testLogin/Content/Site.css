@@ -1,14 +1,15 @@
-﻿body {
+﻿@font-face {
+	font-family: Lobster-Regular;
+	src: url('../fonts/Lobster-Regular.ttf') format('truetype');
+}
+
+
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
-}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -24,11 +25,9 @@ textarea {
     max-width: 280px;
 }
 
-@media (min-width: 1200px) {
   .container {
     width: 100%;
 
-  }
 }
 .btn-success {
     background-color: #61ba9e;
@@ -149,3 +148,83 @@ div#drag #right {
     .trash.custom {
         background-color:#d9534f;
     }
+/* General button style (reset) */
+.btn-custom {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 45px;
+	display: inline-block;
+
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-custom:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+/* Button 1 */
+.btn-1 {
+	border: 3px solid #fff;
+	color: #fff;
+}
+
+/* Button 1e */
+.btn-1e {
+	overflow: hidden;
+}
+
+.btn-1e:after {
+	width: 100%;
+	height: 0;
+	top: 50%;
+	left: 50%;
+	background: #fff;
+	opacity: 0;
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.btn-1e:hover,
+.btn-1e:active {
+	color: #0e83cd;
+}
+
+.btn-1e:hover:after {
+	height: 260%;
+	opacity: 1;
+}
+
+.btn-1e:active:after {
+	height: 400%;
+	opacity: 1;
+}
+
+
+#about{
+    background-color:azure;
+    color: black;
+}
+h1, h2,h3,h4,h5,h6, .h1,.h2 , .h3, .h4, .h5, .h6 {
+    font-family:Lobster-Regular, cursive;
+  font-weight: 500;
+  line-height: 1.1;
+}
+

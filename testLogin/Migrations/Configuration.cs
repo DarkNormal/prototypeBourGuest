@@ -9,8 +9,7 @@ namespace testLogin.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "testLogin.Models.ApplicationDbContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(testLogin.Models.ApplicationDbContext context)

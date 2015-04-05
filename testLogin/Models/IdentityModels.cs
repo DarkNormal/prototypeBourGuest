@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace testLogin.Models
 {
@@ -20,9 +21,25 @@ namespace testLogin.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Restaurant> Restaurant { get; set; }
+        public DbSet<Floorplan> Floorplan { get; set; }
+        public DbSet<tableObject> tableObject { get; set; }
+
         public ApplicationDbContext()
-            : base("planContext", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
+        }
+        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("WebUsers");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("WebUserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("WebUserLogins");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("WebUserClaims");
+            modelBuilder.Entity<IdentityRole>().ToTable("WebRoles");
+            modelBuilder.HasDefaultSchema("bourguestMob");
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         public static ApplicationDbContext Create()

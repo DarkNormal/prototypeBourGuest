@@ -8,7 +8,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using testLogin.DAL;
 using testLogin.Models;
 
 namespace testLogin.Controllers
@@ -16,12 +15,12 @@ namespace testLogin.Controllers
     [Authorize]
     public class RestaurantsController : Controller
     {
-        private planContext db = new planContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Restaurants
         public ActionResult Index()
         {
-            return View(db.Restaurants.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)));
+            return View(db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)));
         }
 
         // GET: Restaurants/Details/5
@@ -31,7 +30,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Restaurants.Find(id);
+            Restaurant restaurant = db.Restaurant.Find(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -54,7 +53,7 @@ namespace testLogin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Restaurants.Add(restaurant);
+                db.Restaurant.Add(restaurant);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +68,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Restaurants.Find(id);
+            Restaurant restaurant = db.Restaurant.Find(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -100,7 +99,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Restaurants.Find(id);
+            Restaurant restaurant = db.Restaurant.Find(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -113,8 +112,8 @@ namespace testLogin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Restaurant restaurant = db.Restaurants.Find(id);
-            db.Restaurants.Remove(restaurant);
+            Restaurant restaurant = db.Restaurant.Find(id);
+            db.Restaurant.Remove(restaurant);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

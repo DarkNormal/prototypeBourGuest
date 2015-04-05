@@ -66,7 +66,7 @@ namespace testLogin.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Restaurant Email")]
         public string Email { get; set; }
 
         [Required]

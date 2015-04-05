@@ -6,19 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using testLogin.DAL;
 using testLogin.Models;
 
 namespace testLogin.Controllers
 {
     public class tableObjectsController : Controller
     {
-        private planContext db = new planContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: tableObjects
         public ActionResult Index()
         {
-            return View(db.tableObjects.ToList());
+            return View(db.tableObject.ToList());
         }
 
         // GET: tableObjects/Details/5
@@ -28,7 +27,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tableObject tableObject = db.tableObjects.Find(id);
+            tableObject tableObject = db.tableObject.Find(id);
             if (tableObject == null)
             {
                 return HttpNotFound();
@@ -45,11 +44,11 @@ namespace testLogin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public void Create(List<tableObject> newObjects)
+        public ActionResult Create(List<tableObject> newObjects)
         {
             int floorplanID = 0;
             try {
-                floorplanID = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
+                floorplanID = db.Floorplan.OrderByDescending(t => t.id).FirstOrDefault().id;
             }
             catch(NullReferenceException e)
             {
@@ -63,21 +62,18 @@ namespace testLogin.Controllers
             var model = new tableObject();
             if (ModelState.IsValid)
             {
-                newObjects.ForEach(r => db.tableObjects.Add(r));
+                newObjects.ForEach(r => db.tableObject.Add(r));
                 //db.tableObjects.Add(newObjects);
                 db.SaveChanges();
+                return Json(new { success = true });
             }
+            else
+            {
+                return Json(new { success = false });
+            }
+            
         }
-        //public ActionResult Create(tableObject newObjects)
-        //{
-        //    var model = new tableObject();
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.tableObjects.Add(newObjects);
-        //        db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+
 
         // GET: tableObjects/Edit/5
         public ActionResult Edit(int? id)
@@ -86,7 +82,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tableObject tableObject = db.tableObjects.Find(id);
+            tableObject tableObject = db.tableObject.Find(id);
             if (tableObject == null)
             {
                 return HttpNotFound();
@@ -117,7 +113,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tableObject tableObject = db.tableObjects.Find(id);
+            tableObject tableObject = db.tableObject.Find(id);
             if (tableObject == null)
             {
                 return HttpNotFound();
@@ -130,8 +126,8 @@ namespace testLogin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tableObject tableObject = db.tableObjects.Find(id);
-            db.tableObjects.Remove(tableObject);
+            tableObject tableObject = db.tableObject.Find(id);
+            db.tableObject.Remove(tableObject);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

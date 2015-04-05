@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using testLogin.DAL;
 using testLogin.Models;
 
 
@@ -16,12 +15,12 @@ namespace testLogin.Controllers
     [Authorize]
     public class FloorplansController : Controller
     {
-        private planContext db = new planContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Floorplans
         public ActionResult Index()
         {
-            return View(db.Floorplans.ToList());
+            return View(db.Floorplan.ToList());
 
         }
 
@@ -32,7 +31,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Floorplan floorplan = db.Floorplans.Find(id);
+            Floorplan floorplan = db.Floorplan.Find(id);
             if (floorplan == null)
             {
                 return HttpNotFound();
@@ -56,21 +55,25 @@ namespace testLogin.Controllers
             floorplan.id = 1;
             try
             {
-                floorplan.id = db.Floorplans.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
+                floorplan.id = db.Floorplan.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
             }
             catch(NullReferenceException e)
             {
             }
-            var resID = db.Restaurants.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+            var resID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
             floorplan.restID = resID.id;
             if (ModelState.IsValid)
             {
-                db.Floorplans.Add(floorplan);
+                db.Floorplan.Add(floorplan);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new {success = true });
+            }
+            else
+            {
+                return Json(new { success = false });
             }
 
-            return View(floorplan);
+
         }
 
         // GET: Floorplans/Edit/5
@@ -80,7 +83,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Floorplan floorplan = db.Floorplans.Find(id);
+            Floorplan floorplan = db.Floorplan.Find(id);
             if (floorplan == null)
             {
                 return HttpNotFound();
@@ -113,7 +116,7 @@ namespace testLogin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Floorplan floorplan = db.Floorplans.Find(id);
+            Floorplan floorplan = db.Floorplan.Find(id);
             if (floorplan == null)
             {
                 return HttpNotFound();
@@ -126,8 +129,10 @@ namespace testLogin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Floorplan floorplan = db.Floorplans.Find(id);
-            db.Floorplans.Remove(floorplan);
+            Floorplan floorplan = db.Floorplan.Find(id);
+            db.Floorplan.Remove(floorplan);
+            List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", id)).ToList();
+            tab.ForEach(r => db.tableObject.Remove(r));
             db.SaveChanges();
             return RedirectToAction("Index");
         }

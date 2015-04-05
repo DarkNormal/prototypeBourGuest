@@ -14,68 +14,6 @@ var showContent,
     width,
     height;
 
-function save() {
-    alert("JS create plan enabled");
-    var tableObjectObj = {
-        tableObjectID: "21",
-        xcoord: "5",
-        ycoord: "6",
-        objType: "1",
-        available: "true",
-        FloorplanID: "1"
-    };
-    var $objArray = [];
-    var objCreate = function (tableObjectID, xcoord, ycoord, objType, available, FloorplanID) {
-        this.tableObjectID = tableObjectID;
-        this.xcoord = xcoord;
-        this.ycoord = ycoord;
-        this.objType = objType;
-        this.available = available;
-        this.FloorplanID = FloorplanID;
-    }
-    $objArray.push(new objCreate("23", "4", "4", "3", "false", "1"));
-    $objArray.push(new objCreate("22", "2", "5", "1", "true", "1"));
-    $objArray.push(new objCreate("24", "5", "1", "5", "false", "1"));
-
-    $.ajax({
-        url: "/tableObjects/Create",
-        type: "POST",
-        contentType: "application/json",
-        success: function (response) {
-            response ? alert("It worked!") : alert("It didn't work.");
-        },
-        data: JSON.stringify($objArray)
-        
-    });
-    window.location.href = '/Floorplans/Index/';
-
-}
-
-
-//function saveObjectLayout() {
-//    alert("JS create plan enabled");
-//    var objectArray = [];
-//    objectArray["tableObjectID"] = "21";
-//    objectArray["xcoord"] = "5";
-//    objectArray["ycoord"] = "6";
-//    objectArray["objType"] = "Chair";
-//    objectArray["available"] = "true";
-//    objectArray["FloorplanID"] = "6";
-
-//    $.ajax({
-//        type: "POST",
-//        cache: false,
-//        url: "/tableObjects/Create",
-//        contentType: "application/json; charset=UTF-8",
-//        dataType: "json",
-//        traditional: true,
-//        data: {
-//            objectArray: objectArray
-//        },
-//        success: alert("POSTED")
-//    });
-//};
-
 function enableDrag() {
     deleteTable();                                              //calls delete function
     var size = document.getElementById("floorsize");
@@ -207,15 +145,33 @@ function saveLayout() {
         url: "/Floorplans/Create",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify($floorplan)
+        data: JSON.stringify($floorplan),
+        success: function(result){
+            if (result.success) {
+                Log("Floor plan created successfully, adding plan objects...");
+                $.ajax({
+                    url: "/tableObjects/Create",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify($objArray),
+                    success: function(result2){
+                        if (result2.success) {
+                            Log("Plan objects created successfully");
+                        } else {
+                            Log("Failed to create plan objects");
+                        }
+                    }
+
+                });
+            }
+
+        }
 
     });
-    $.ajax({
-        url: "/tableObjects/Create",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify($objArray)
-
-    });
-    window.location.href = '/Floorplans/Index/';
+   
+    //window.location.href = '/Floorplans/Index/';
+}
+function Log(data) {
+    alert(data);
+    console.log(data);
 }

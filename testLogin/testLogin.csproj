@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201504061857084_extraSeeds.Designer.cs">
       <DependentUpon>201504061857084_extraSeeds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504061959134_smallConfigchange.cs" />
+    <Compile Include="Migrations\201504061959134_smallConfigchange.Designer.cs">
+      <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookings.cs" />
@@ -403,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504061857084_extraSeeds.resx">
       <DependentUpon>201504061857084_extraSeeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504061959134_smallConfigchange.resx">
+      <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

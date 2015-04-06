@@ -11,6 +11,7 @@ namespace testLogin.Models
         public double numReviews { get; set; }
         public double rating { get; set; }
         public double reviews { get; set; }
+        public int restID { get; set; }
 
     }
 }

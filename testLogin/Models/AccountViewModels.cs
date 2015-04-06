@@ -14,6 +14,10 @@ namespace testLogin.Models
     {
         public string ReturnUrl { get; set; }
     }
+    public class DisplayEmail
+    {
+
+    }
 
     public class SendCodeViewModel
     {

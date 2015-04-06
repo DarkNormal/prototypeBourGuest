@@ -24,6 +24,12 @@ namespace testLogin.Models
         public DbSet<Restaurant> Restaurant { get; set; }
         public DbSet<Floorplan> Floorplan { get; set; }
         public DbSet<tableObject> tableObject { get; set; }
+        public DbSet<Bookings> Bookings { get; set; }
+        public DbSet<tableObjectBookings> tableObjectBookings { get; set; }
+        public DbSet<Reviews> Reviews { get; set; }
+        public DbSet<UsersTable> UsersTable { get; set; }
+        public DbSet<UserReviews> UserReviews { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

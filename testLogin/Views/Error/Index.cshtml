@@ -1,5 +1,4 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
+﻿@model testLogin.Models.ErrorModel
 @{
     ViewBag.Title = "Error";
 }
@@ -7,23 +6,21 @@
     body {
         background-color: #111111;
     }
-
-    .navbar, footer {
-        display: none;
+    .navbar, footer{
+        display:none;
     }
-
     .neon {
-        font-size: 75px;
-        font-family: 'Monoton', cursive;
-        text-align: center;
-        text-transform: uppercase;
-        text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
-        color: red;
-    }
+    font-size: 75px;
+    font-family: 'Monoton', cursive;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
+    color: red;
+}
 
-    div p {
-        margin: 0;
-    }
+        div p {
+            margin: 0;
+        }
 
     #error:hover {
         text-shadow: 0 0 200px #ffffff,0 0 80px #008000,0 0 6px #0000ff;
@@ -130,20 +127,21 @@
     }
 </style>
 
-<div class="neon">
-    <p id="error">E<span>r</span>ror</p>
-    <p id="code">4<span>0</span><span>4</span></p>
-</div>
-<div id="errorMessage" style="text-align:center">
-    @{
-        if (String.IsNullOrEmpty(ViewBag.errorMessage))
-        {
-            <h2 class="text-danger">An error occurred while processing your request.</h2>
-        }
-        else
-        {
-            <h2 class="text-danger">@ViewBag.errorMessage</h2>
-        }
-    }
-    <p><a href="/Home/Index" class="btn btn-custom btn-1 btn-1e">Back to Safety &raquo;</a></p>
-</div>
+    <div class="neon">
+        <p id="error">E<span>r</span>ror</p>
+        <p id="code">4<span>0</span><span>4</span></p>
+    </div>
+    <div id="errorMessage" style="text-align:center">
+        @{
+            string message = null;
+            message = "An error occurred while processing your request";
+
+            }
+
+        @Html.Raw(message)
+        <p><a href="/Home/Index" class="btn btn-custom btn-1 btn-1e">Back to Safety &raquo;</a></p>
+    </div>
+
+
+
+

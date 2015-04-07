@@ -8,7 +8,9 @@ namespace testLogin.Models
 {
     public class Restaurant
     {
+
         public int id { get; set; }
+        public string appImage { get; set; }
         [Display(Name= "Restaurant Name")]
         [Required(ErrorMessage = "The  restaurant name is required")]
         public string restaurantName { get; set; }

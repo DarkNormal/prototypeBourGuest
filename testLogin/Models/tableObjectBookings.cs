@@ -14,5 +14,6 @@ namespace testLogin.Models
         public int tabObjID { get; set; }
         public int time { get; set; }
         public int depart { get; set; }
+        public string uzer { get; set; }
     }
 }

@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using testLogin.Models;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace testLogin.Controllers
 {
@@ -45,20 +50,57 @@ namespace testLogin.Controllers
         }
 
         // POST: Restaurants/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type1,type2,type3,openClose,bio,Email, phoneNum")] Restaurant restaurant)
+        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type1,type2,type3,openClose,bio,Email, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    string accountName = "bourguestblob";
+                    string accoutnKey = "k6cRVklwaada5k3EXVBE4219ESoTLF1yKzZPBwx0dGY1OWk7WSoR3VDPgpoXj0rSangBPDz9fdQaUY3j3jNIEw==";
+                    StorageCredentials creds = new StorageCredentials(accountName, accoutnKey);
+                    CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
+                    CloudBlobClient client = account.CreateCloudBlobClient();
+                    CloudBlobContainer sampleContainer = client.GetContainerReference("images");
+                    sampleContainer.CreateIfNotExists();
+
+
+                    if (fileToUpload != null)
+                    {
+                        
+                        string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
+                        string path = System.IO.Path.Combine(
+                                              Server.MapPath("~/App_Data/uploads"), pic);
+                        fileToUpload.SaveAs(path);
+                        string uniqueBlobName = string.Format("images/image_{0}{1}",
+                            Guid.NewGuid().ToString(), Path.GetExtension(pic));
+                        CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
+                        using (Stream file = System.IO.File.OpenRead(Server.MapPath("~/App_Data/uploads/" + pic)))
+                        {
+                            blob.UploadFromStream(file);
+                        }
+                        string bloburi = blob.Uri.ToString();
+                        restaurant.appImage = bloburi;
+                        
+
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
                 db.Restaurant.Add(restaurant);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                // after successfully uploading redirect the user
+                return RedirectToAction("Index", "Floorplans");
             }
-
-            return View(restaurant);
+            return View();
         }
 
         // GET: Restaurants/Edit/5

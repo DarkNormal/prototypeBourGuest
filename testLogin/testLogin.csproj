@@ -52,6 +52,24 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="Mvc.RazorTools">
       <HintPath>..\packages\Mvc.RazorTools.Base.1.0.5\lib\net45\Mvc.RazorTools.dll</HintPath>
     </Reference>
@@ -75,6 +93,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -237,6 +259,26 @@
     <Compile Include="Migrations\201504061959134_smallConfigchange.Designer.cs">
       <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504071005506_pendingChanges.cs" />
+    <Compile Include="Migrations\201504071005506_pendingChanges.Designer.cs">
+      <DependentUpon>201504071005506_pendingChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504071022327_pendingChanges1.cs" />
+    <Compile Include="Migrations\201504071022327_pendingChanges1.Designer.cs">
+      <DependentUpon>201504071022327_pendingChanges1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504071239319_appimage.cs" />
+    <Compile Include="Migrations\201504071239319_appimage.Designer.cs">
+      <DependentUpon>201504071239319_appimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504071307455_blobchanges.cs" />
+    <Compile Include="Migrations\201504071307455_blobchanges.Designer.cs">
+      <DependentUpon>201504071307455_blobchanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504071314188_userchanges.cs" />
+    <Compile Include="Migrations\201504071314188_userchanges.Designer.cs">
+      <DependentUpon>201504071314188_userchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookings.cs" />
@@ -367,7 +409,7 @@
     <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
     <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
@@ -410,6 +452,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504061959134_smallConfigchange.resx">
       <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071005506_pendingChanges.resx">
+      <DependentUpon>201504071005506_pendingChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071022327_pendingChanges1.resx">
+      <DependentUpon>201504071022327_pendingChanges1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071239319_appimage.resx">
+      <DependentUpon>201504071239319_appimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071307455_blobchanges.resx">
+      <DependentUpon>201504071307455_blobchanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071314188_userchanges.resx">
+      <DependentUpon>201504071314188_userchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

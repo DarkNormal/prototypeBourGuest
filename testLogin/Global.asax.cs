@@ -19,28 +19,28 @@ namespace testLogin
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
         }
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Exception exception = Server.GetLastError();
-            Server.ClearError();
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    Exception exception = Server.GetLastError();
+        //    Server.ClearError();
 
-            RouteData routeData = new RouteData();
-            routeData.Values.Add("controller", "Error");
-            routeData.Values.Add("action", "Index");
-            routeData.Values.Add("exception", exception);
+        //    RouteData routeData = new RouteData();
+        //    routeData.Values.Add("controller", "Error");
+        //    routeData.Values.Add("action", "Index");
+        //    routeData.Values.Add("exception", exception);
 
-            if (exception.GetType() == typeof(HttpException))
-            {
-                routeData.Values.Add("statusCode", ((HttpException)exception).GetHttpCode());
-            }
-            else
-            {
-                routeData.Values.Add("statusCode", 500);
-            }
+        //    if (exception.GetType() == typeof(HttpException))
+        //    {
+        //        routeData.Values.Add("statusCode", ((HttpException)exception).GetHttpCode());
+        //    }
+        //    else
+        //    {
+        //        routeData.Values.Add("statusCode", 500);
+        //    }
 
-            IController controller = new ErrorController();
-            controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
-            Response.End();
-        }
+        //    IController controller = new ErrorController();
+        //    controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+        //    Response.End();
+        //}
     }
 }

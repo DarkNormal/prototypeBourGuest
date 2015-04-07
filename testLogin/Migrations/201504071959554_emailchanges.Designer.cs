@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class appimage : IMigrationMetadata
+    public sealed partial class emailchanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(appimage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(emailchanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504071239319_appimage"; }
+            get { return "201504071959554_emailchanges"; }
         }
         
         string IMigrationMetadata.Source

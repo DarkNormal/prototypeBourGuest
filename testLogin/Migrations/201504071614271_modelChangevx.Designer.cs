@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class pendingChanges1 : IMigrationMetadata
+    public sealed partial class modelChangevx : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(pendingChanges1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(modelChangevx));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504071022327_pendingChanges1"; }
+            get { return "201504071614271_modelChangevx"; }
         }
         
         string IMigrationMetadata.Source

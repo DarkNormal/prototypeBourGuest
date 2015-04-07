@@ -52,11 +52,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.vegetarian, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.vegan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.vegetarian)
-                    @Html.ValidationMessageFor(model => model.vegetarian, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.vegan)
+                    @Html.ValidationMessageFor(model => model.vegan, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

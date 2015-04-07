@@ -51,8 +51,9 @@ namespace testLogin.Controllers
 
         // POST: Restaurants/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type1,type2,type3,openClose,bio,Email, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
+        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
         {
+            restaurant.Email = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 try
@@ -63,7 +64,12 @@ namespace testLogin.Controllers
                     CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
                     CloudBlobClient client = account.CreateCloudBlobClient();
                     CloudBlobContainer sampleContainer = client.GetContainerReference("images");
-                    sampleContainer.CreateIfNotExists();
+                    if (sampleContainer.CreateIfNotExists())
+                    {
+                        var permissions = sampleContainer.GetPermissions();
+                        permissions.PublicAccess = BlobContainerPublicAccessType.Container;
+                        sampleContainer.SetPermissions(permissions);
+                    }
 
 
                     if (fileToUpload != null)
@@ -71,17 +77,19 @@ namespace testLogin.Controllers
                         
                         string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
                         string path = System.IO.Path.Combine(
-                                              Server.MapPath("~/App_Data/uploads"), pic);
+                                              Server.MapPath("~/Content/Images"), pic);
                         fileToUpload.SaveAs(path);
                         string uniqueBlobName = string.Format("images/image_{0}{1}",
                             Guid.NewGuid().ToString(), Path.GetExtension(pic));
                         CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
-                        using (Stream file = System.IO.File.OpenRead(Server.MapPath("~/App_Data/uploads/" + pic)))
+                        using (Stream file = System.IO.File.OpenRead(path))
                         {
                             blob.UploadFromStream(file);
                         }
                         string bloburi = blob.Uri.ToString();
                         restaurant.appImage = bloburi;
+
+                        System.IO.File.Delete(path);
                         
 
 
@@ -97,6 +105,7 @@ namespace testLogin.Controllers
                 }
                 db.Restaurant.Add(restaurant);
                 db.SaveChanges();
+
                 // after successfully uploading redirect the user
                 return RedirectToAction("Index", "Floorplans");
             }
@@ -123,7 +132,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegetarian,type,bio,Email")] Restaurant restaurant)
+        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,type,bio,Email")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {

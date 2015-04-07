@@ -28,7 +28,7 @@ namespace testLogin.Migrations
                         latitude = c.Double(nullable: false),
                         longitude = c.Double(nullable: false),
                         wheelchair = c.Boolean(nullable: false),
-                        vegetarian = c.Boolean(nullable: false),
+                        vegan = c.Boolean(nullable: false),
                         type1 = c.String(nullable: false),
                         type2 = c.String(),
                         type3 = c.String(),

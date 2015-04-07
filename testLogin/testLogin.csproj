@@ -259,25 +259,17 @@
     <Compile Include="Migrations\201504061959134_smallConfigchange.Designer.cs">
       <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504071005506_pendingChanges.cs" />
-    <Compile Include="Migrations\201504071005506_pendingChanges.Designer.cs">
-      <DependentUpon>201504071005506_pendingChanges.cs</DependentUpon>
+    <Compile Include="Migrations\201504071614271_modelChangevx.cs" />
+    <Compile Include="Migrations\201504071614271_modelChangevx.Designer.cs">
+      <DependentUpon>201504071614271_modelChangevx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504071022327_pendingChanges1.cs" />
-    <Compile Include="Migrations\201504071022327_pendingChanges1.Designer.cs">
-      <DependentUpon>201504071022327_pendingChanges1.cs</DependentUpon>
+    <Compile Include="Migrations\201504071959554_emailchanges.cs" />
+    <Compile Include="Migrations\201504071959554_emailchanges.Designer.cs">
+      <DependentUpon>201504071959554_emailchanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504071239319_appimage.cs" />
-    <Compile Include="Migrations\201504071239319_appimage.Designer.cs">
-      <DependentUpon>201504071239319_appimage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504071307455_blobchanges.cs" />
-    <Compile Include="Migrations\201504071307455_blobchanges.Designer.cs">
-      <DependentUpon>201504071307455_blobchanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504071314188_userchanges.cs" />
-    <Compile Include="Migrations\201504071314188_userchanges.Designer.cs">
-      <DependentUpon>201504071314188_userchanges.cs</DependentUpon>
+    <Compile Include="Migrations\201504072027529_changes.cs" />
+    <Compile Include="Migrations\201504072027529_changes.Designer.cs">
+      <DependentUpon>201504072027529_changes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -453,20 +445,14 @@
     <EmbeddedResource Include="Migrations\201504061959134_smallConfigchange.resx">
       <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071005506_pendingChanges.resx">
-      <DependentUpon>201504071005506_pendingChanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504071614271_modelChangevx.resx">
+      <DependentUpon>201504071614271_modelChangevx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071022327_pendingChanges1.resx">
-      <DependentUpon>201504071022327_pendingChanges1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504071959554_emailchanges.resx">
+      <DependentUpon>201504071959554_emailchanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071239319_appimage.resx">
-      <DependentUpon>201504071239319_appimage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071307455_blobchanges.resx">
-      <DependentUpon>201504071307455_blobchanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071314188_userchanges.resx">
-      <DependentUpon>201504071314188_userchanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504072027529_changes.resx">
+      <DependentUpon>201504072027529_changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

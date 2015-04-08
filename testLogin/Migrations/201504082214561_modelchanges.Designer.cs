@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class sendgridchecks : IMigrationMetadata
+    public sealed partial class modelchanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(sendgridchecks));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(modelchanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504061805062_sendgridchecks"; }
+            get { return "201504082214561_modelchanges"; }
         }
         
         string IMigrationMetadata.Source

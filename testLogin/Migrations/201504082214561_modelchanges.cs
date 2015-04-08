@@ -3,7 +3,7 @@ namespace testLogin.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class sendgridchecks : DbMigration
+    public partial class modelchanges : DbMigration
     {
         public override void Up()
         {

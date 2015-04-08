@@ -73,9 +73,6 @@
     <Reference Include="Mvc.RazorTools">
       <HintPath>..\packages\Mvc.RazorTools.Base.1.0.5\lib\net45\Mvc.RazorTools.dll</HintPath>
     </Reference>
-    <Reference Include="Mvc.RazorTools.FontAwesome">
-      <HintPath>..\packages\Mvc.RazorTools.FontAwesome.4.1.0.0\lib\net45\Mvc.RazorTools.FontAwesome.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -200,7 +197,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\Razor Tools\FontAwesome.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -215,61 +211,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Bootstrap.cs" />
-    <Compile Include="Migrations\201504050026596_tableNameChanges.cs" />
-    <Compile Include="Migrations\201504050026596_tableNameChanges.Designer.cs">
-      <DependentUpon>201504050026596_tableNameChanges.cs</DependentUpon>
+    <Compile Include="Migrations\201504082146375_seeding.cs" />
+    <Compile Include="Migrations\201504082146375_seeding.Designer.cs">
+      <DependentUpon>201504082146375_seeding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504051417591_uiupdates.cs" />
-    <Compile Include="Migrations\201504051417591_uiupdates.Designer.cs">
-      <DependentUpon>201504051417591_uiupdates.cs</DependentUpon>
+    <Compile Include="Migrations\201504082151134_pluralchanges.cs" />
+    <Compile Include="Migrations\201504082151134_pluralchanges.Designer.cs">
+      <DependentUpon>201504082151134_pluralchanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504052057084_uichangesModelAdds.cs" />
-    <Compile Include="Migrations\201504052057084_uichangesModelAdds.Designer.cs">
-      <DependentUpon>201504052057084_uichangesModelAdds.cs</DependentUpon>
+    <Compile Include="Migrations\201504082214561_modelchanges.cs" />
+    <Compile Include="Migrations\201504082214561_modelchanges.Designer.cs">
+      <DependentUpon>201504082214561_modelchanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504061303049_modelChanges.cs" />
-    <Compile Include="Migrations\201504061303049_modelChanges.Designer.cs">
-      <DependentUpon>201504061303049_modelChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061306246_initial.cs" />
-    <Compile Include="Migrations\201504061306246_initial.Designer.cs">
-      <DependentUpon>201504061306246_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061337157_seedmethod.cs" />
-    <Compile Include="Migrations\201504061337157_seedmethod.Designer.cs">
-      <DependentUpon>201504061337157_seedmethod.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061339503_seedmethod2.cs" />
-    <Compile Include="Migrations\201504061339503_seedmethod2.Designer.cs">
-      <DependentUpon>201504061339503_seedmethod2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061443555_errorhandling.cs" />
-    <Compile Include="Migrations\201504061443555_errorhandling.Designer.cs">
-      <DependentUpon>201504061443555_errorhandling.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061805062_sendgridchecks.cs" />
-    <Compile Include="Migrations\201504061805062_sendgridchecks.Designer.cs">
-      <DependentUpon>201504061805062_sendgridchecks.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061857084_extraSeeds.cs" />
-    <Compile Include="Migrations\201504061857084_extraSeeds.Designer.cs">
-      <DependentUpon>201504061857084_extraSeeds.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504061959134_smallConfigchange.cs" />
-    <Compile Include="Migrations\201504061959134_smallConfigchange.Designer.cs">
-      <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504071614271_modelChangevx.cs" />
-    <Compile Include="Migrations\201504071614271_modelChangevx.Designer.cs">
-      <DependentUpon>201504071614271_modelChangevx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504071959554_emailchanges.cs" />
-    <Compile Include="Migrations\201504071959554_emailchanges.Designer.cs">
-      <DependentUpon>201504071959554_emailchanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504072027529_changes.cs" />
-    <Compile Include="Migrations\201504072027529_changes.Designer.cs">
-      <DependentUpon>201504072027529_changes.cs</DependentUpon>
+    <Compile Include="Migrations\201504082238402_blobchanges.cs" />
+    <Compile Include="Migrations\201504082238402_blobchanges.Designer.cs">
+      <DependentUpon>201504082238402_blobchanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -412,47 +368,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504050026596_tableNameChanges.resx">
-      <DependentUpon>201504050026596_tableNameChanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504082146375_seeding.resx">
+      <DependentUpon>201504082146375_seeding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504051417591_uiupdates.resx">
-      <DependentUpon>201504051417591_uiupdates.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504082151134_pluralchanges.resx">
+      <DependentUpon>201504082151134_pluralchanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504052057084_uichangesModelAdds.resx">
-      <DependentUpon>201504052057084_uichangesModelAdds.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504082214561_modelchanges.resx">
+      <DependentUpon>201504082214561_modelchanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061303049_modelChanges.resx">
-      <DependentUpon>201504061303049_modelChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061306246_initial.resx">
-      <DependentUpon>201504061306246_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061337157_seedmethod.resx">
-      <DependentUpon>201504061337157_seedmethod.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061339503_seedmethod2.resx">
-      <DependentUpon>201504061339503_seedmethod2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061443555_errorhandling.resx">
-      <DependentUpon>201504061443555_errorhandling.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061805062_sendgridchecks.resx">
-      <DependentUpon>201504061805062_sendgridchecks.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061857084_extraSeeds.resx">
-      <DependentUpon>201504061857084_extraSeeds.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504061959134_smallConfigchange.resx">
-      <DependentUpon>201504061959134_smallConfigchange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071614271_modelChangevx.resx">
-      <DependentUpon>201504071614271_modelChangevx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504071959554_emailchanges.resx">
-      <DependentUpon>201504071959554_emailchanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504072027529_changes.resx">
-      <DependentUpon>201504072027529_changes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504082238402_blobchanges.resx">
+      <DependentUpon>201504082238402_blobchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

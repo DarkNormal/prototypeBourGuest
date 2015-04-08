@@ -6,14 +6,14 @@ namespace testLogin.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class uichangesModelAdds : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class pluralchanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(uichangesModelAdds));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(pluralchanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504052057084_uichangesModelAdds"; }
+            get { return "201504082151134_pluralchanges"; }
         }
         
         string IMigrationMetadata.Source

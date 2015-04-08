@@ -44,8 +44,8 @@ namespace testLogin.Models
             modelBuilder.Entity<IdentityUserLogin>().ToTable("WebUserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("WebUserClaims");
             modelBuilder.Entity<IdentityRole>().ToTable("WebRoles");
-            modelBuilder.HasDefaultSchema("bourguestMob");
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.HasDefaultSchema("bourguestMob");
         }
 
         public static ApplicationDbContext Create()

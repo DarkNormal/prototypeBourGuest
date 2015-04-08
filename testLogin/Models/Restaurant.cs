@@ -11,17 +11,19 @@ namespace testLogin.Models
 
         public int id { get; set; }
         public string appImage { get; set; }
-        [Display(Name= "Restaurant Name: ")]
+        [Display(Name = "Restaurant Name: ")]
         [Required(ErrorMessage = "The  restaurant name is required")]
         public string restaurantName { get; set; }
-        [Display (Name= "Latitude: ")]
+        [Display(Name = "Latitude: ")]
         public double latitude { get; set; }
         [Display(Name = "Longitude: ")]
         public double longitude { get; set; }
         [Display(Name = "Wheelchair Accessible? ")]
         public bool wheelchair { get; set; }
-        [Display(Name = "Vegan? ")]
+        [Display(Name = "Vegan options? ")]
         public bool vegan { get; set; }
+        [Display(Name = "Wi-Fi zone? ")]
+        public bool wifi { get; set; }
         [Required(ErrorMessage = "At least 1 type is required")]
         [Display(Name = "Restaurant Type(s): ")]
         public string type1 { get; set; }

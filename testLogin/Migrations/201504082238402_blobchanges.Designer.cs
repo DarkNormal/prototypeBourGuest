@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class smallConfigchange : IMigrationMetadata
+    public sealed partial class blobchanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(smallConfigchange));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(blobchanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504061959134_smallConfigchange"; }
+            get { return "201504082238402_blobchanges"; }
         }
         
         string IMigrationMetadata.Source

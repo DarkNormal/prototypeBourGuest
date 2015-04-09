@@ -57,60 +57,54 @@ namespace testLogin.Controllers
             restaurant.restaurantName = restaurant.restaurantName.ToLower();
             if (ModelState.IsValid)
             {
-                try
+                if (fileToUpload != null) //if they uploaded an image, skip if null
                 {
-                    string accountName = "bourguestblob";
-                    string accoutnKey = "k6cRVklwaada5k3EXVBE4219ESoTLF1yKzZPBwx0dGY1OWk7WSoR3VDPgpoXj0rSangBPDz9fdQaUY3j3jNIEw==";
-                    StorageCredentials creds = new StorageCredentials(accountName, accoutnKey);
-                    CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
-                    CloudBlobClient client = account.CreateCloudBlobClient();
-                    CloudBlobContainer sampleContainer = client.GetContainerReference("images");
-                    if (sampleContainer.CreateIfNotExists())
+                    try
                     {
-                        var permissions = sampleContainer.GetPermissions();
-                        permissions.PublicAccess = BlobContainerPublicAccessType.Container;
-                        sampleContainer.SetPermissions(permissions);
-                    }
-
-
-                    if (fileToUpload != null)
-                    {
-
-                        string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
-                        string path = System.IO.Path.Combine(
-                                              Server.MapPath("~/Content/Images"), pic);
-                        fileToUpload.SaveAs(path);
-                        string uniqueBlobName = string.Format("images/image_{0}{1}",
-                            Guid.NewGuid().ToString(), Path.GetExtension(pic));
-                        CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
-                        using (Stream file = System.IO.File.OpenRead(path))
+                        string accountName = "bourguestblob";
+                        string accoutnKey = "k6cRVklwaada5k3EXVBE4219ESoTLF1yKzZPBwx0dGY1OWk7WSoR3VDPgpoXj0rSangBPDz9fdQaUY3j3jNIEw==";
+                        StorageCredentials creds = new StorageCredentials(accountName, accoutnKey);
+                        CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
+                        CloudBlobClient client = account.CreateCloudBlobClient();
+                        CloudBlobContainer sampleContainer = client.GetContainerReference("images");
+                        if (sampleContainer.CreateIfNotExists())
                         {
-                            blob.UploadFromStream(file);
+                            var permissions = sampleContainer.GetPermissions();
+                            permissions.PublicAccess = BlobContainerPublicAccessType.Container;
+                            sampleContainer.SetPermissions(permissions);
                         }
-                        string bloburi = blob.Uri.ToString();
-                        restaurant.appImage = bloburi;
 
-                        System.IO.File.Delete(path);
-
-
-
+                            string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
+                            string path = System.IO.Path.Combine(
+                                                  Server.MapPath("~/Content/Images"), pic);
+                            fileToUpload.SaveAs(path);
+                            string uniqueBlobName = string.Format("images/image_{0}{1}",
+                                Guid.NewGuid().ToString(), Path.GetExtension(pic));
+                            CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
+                            using (Stream file = System.IO.File.OpenRead(path))
+                            {
+                                blob.UploadFromStream(file);
+                            }
+                            string bloburi = blob.Uri.ToString();
+                            restaurant.appImage = bloburi;
+                            //temporarily store image in webiste conent folder, but delete immediately
+                            //once blob has been created and stored
+                            System.IO.File.Delete(path);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        return RedirectToAction("Index", "Home");
+                        Console.WriteLine(e);
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                //add restaurant regardless if they have an image or not
                 db.Restaurant.Add(restaurant);
                 db.SaveChanges();
 
                 // after successfully uploading redirect the user
-                return RedirectToAction("Index", "Floorplans");
+                return RedirectToAction("Index", "Restaurants");
             }
-            return View();
+            //ModelState.isValid false return
+            return View(restaurant);
         }
 
         // GET: Restaurants/Edit/5

@@ -4,99 +4,124 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Restaurant</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.restaurantName)
+                </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Restaurant</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.restaurantName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.restaurantName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.restaurantName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.latitude)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.latitude)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.latitude)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.latitude)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.longitude)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.longitude)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.longitude)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.longitude)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.wheelchair)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.wheelchair)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.wheelchair)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.wheelchair)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.vegan)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vegan)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.vegan)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.vegan)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.type1)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.type1)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.type1)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.type2)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.type1)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.type2)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.type2)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.type3)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.type2)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.type3)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.type3)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.type3)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.bio)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bio)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.bio)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.bio)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.openClose)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.openClose)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.openClose)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.openClose)
-        </dd>
+            </dl>
 
-    </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <div id="deleteWarning" class="alert alert-warning" style="display:none;">
+                        <h4>Warning!</h4>
+                        <p>Deleting your restaurant will delete all associated floorplans!</p>
+                        <input type="submit" value="I know, delete restaurant" class="btn btn-danger" />
+                        <input type="button" id="cancelDelete" value="Cancel" class="btn btn-info" />
+                    </div>
+                    <input type="button" id="myButton" value="Delete" onclick="showDiv()" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+
+@section Scripts{
+    <script>
+        $('#myButton').click(function () {
+            $('#deleteWarning').toggle('slow', function () {
+                // Animation complete.
+            });
+        });
+        $('#cancelDelete').click(function () {
+            $('#deleteWarning').toggle('slow', function () {
+                // Animation complete.
+            });
+        });
+    </script>
+}

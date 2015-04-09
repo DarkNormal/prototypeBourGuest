@@ -30,13 +30,34 @@ namespace testLogin.Migrations
             //
             var restaurants = new List<Restaurant>
              {
-                new Restaurant{id=1,restaurantName="good fellas pizza pan",latitude=53.482239,longitude=-6.3329,wheelchair=true,vegan=true,wifi=true,type1="Italian",type2="Portuguese", type3="Pizza", phoneNum="225392945", openClose="9 to late",bio="Amazing Italian food from Don Corleone", Email="mark.lordan@hello.com"},
-                new Restaurant{id=2,restaurantName="pita pan pita breadsticks",latitude=53.25834,longitude=-6.64212, wheelchair=false,vegan=false,wifi=true,type1="Asian",type2="Pizza", type3="Traditional", phoneNum="5843839", openClose="9 to 5",bio="A nice bitta pita bread is always good",Email="robert_kelly@outlook.com"},
-                new Restaurant{id=3,restaurantName="thai tanic",latitude=53.42249,longitude=-6.434329, wheelchair=false,vegan=false,wifi=true,type1="American",type2="Portuguese", type3="Pizza", phoneNum="225392945", openClose="9 to late",bio="Wok fried everything",Email="thomasmurphy41@gmail.com"},
-                new Restaurant{id=4, restaurantName ="aussie outback", latitude=53.286374, longitude=-6.375107, wheelchair=true, vegan=false,wifi=false, type1="Healthy Option", phoneNum="5893923", openClose="6 to 11", bio="Aussie Outback BBQ food stuff", Email="aussieoutback@gmail.com" },
-                new Restaurant{id=5, restaurantName ="tamaras", latitude=53.286228, longitude=-6.376164, wheelchair=true,vegan=true,wifi=true,type1="Indian", type3="Pizza", phoneNum="59339", openClose="4 to 8", bio= "Tamara's bread, today", Email="tamaras@gmail.com"},
-                new Restaurant{id=6, restaurantName="the lemongrass", latitude=53.285983, longitude=-6.450154, wheelchair=true,vegan=true, wifi=true, type1="Something Different", type2="Pizza", phoneNum="2291", openClose="5 to 10", bio="Expensive and overpriced fiery food", Email="lemongrass@eircom.net"},
-                new Restaurant{id=7, restaurantName="niamh's kitchen", latitude=53.286374, longitude=-6.375106, wheelchair=false,vegan=true,wifi=false,type1="Traditional",phoneNum="44554", openClose="4-9", bio="Food's ok, not great", Email="mark.lordan@email.com"}
+                new Restaurant{id=1,restaurantName="good fellas pizza pan",latitude=53.482239,
+                    longitude=-6.3329,wheelchair=true,vegan=true,wifi=true,type1="Italian",type2="Portuguese", 
+                    type3="Pizza", phoneNum="225392945", openClose="9 to late",bio="Amazing Italian food from Don Corleone", 
+                    Email="mark.lordan@hello.com"},
+                new Restaurant{id=2,restaurantName="pita pan pita breadsticks",latitude=53.25834,
+                    longitude=-6.64212, wheelchair=false,vegan=false,wifi=true,type1="Asian",type2="Pizza",
+                    type3="Traditional", phoneNum="5843839", openClose="9 to 5",bio="A nice bitta pita bread is always good",
+                    Email="robert_kelly@outlook.com"},
+                new Restaurant{id=3,restaurantName="thai tanic",latitude=53.42249,
+                    longitude=-6.434329, wheelchair=false,vegan=false,wifi=true,type1="American",type2="Portuguese", 
+                    type3="Pizza", phoneNum="225392945", openClose="9 to late",bio="Wok fried everything",
+                    Email="thomasmurphy41@gmail.com"},
+                new Restaurant{id=4, restaurantName ="aussie outback", latitude=53.286374, 
+                    longitude=-6.375107, wheelchair=true, vegan=false,wifi=false, type1="Healthy Option", 
+                    phoneNum="5893923", openClose="6 to 11", bio="Aussie Outback BBQ food stuff", 
+                    Email="aussieoutback@gmail.com", appImage="https://bourguestblob.blob.core.windows.net/images/images/image_7f5fd5e1-cdc2-4c07-ba6d-1e887eabd08e.gif" },
+                new Restaurant{id=5, restaurantName ="tamaras", latitude=53.286228, 
+                    longitude=-6.376164, wheelchair=true,vegan=true,wifi=true,type1="Indian", 
+                    type3="Pizza", phoneNum="59339", openClose="4 to 8", bio= "Tamara's bread, today", 
+                    Email="tamaras@gmail.com" , appImage="https://bourguestblob.blob.core.windows.net/images/images/image_3d3c3eac-b46f-42e3-85df-8d457395020f.jpg"},
+                new Restaurant{id=6, restaurantName="the lemongrass", latitude=53.285983, 
+                    longitude=-6.450154, wheelchair=true,vegan=true, wifi=true, type1="Something Different", type2="Pizza", 
+                    phoneNum="2291", openClose="5 to 10", bio="Expensive and overpriced fiery food", 
+                    Email="lemongrass@eircom.net"},
+                new Restaurant{id=7, restaurantName="niamh's kitchen", latitude=53.286374, 
+                    longitude=-6.375106, wheelchair=false,vegan=true,wifi=false,type1="Traditional",
+                    phoneNum="44554", openClose="4-9", bio="Food's ok, not great", 
+                    Email="mark.lordan@email.com", appImage="https://bourguestblob.blob.core.windows.net/images/images/image_5d49b855-8d5c-4fe6-b20e-a27bd66ff36b.jpg"}
              };
             restaurants.ForEach(r => context.Restaurant.AddOrUpdate(r));
             context.SaveChanges();

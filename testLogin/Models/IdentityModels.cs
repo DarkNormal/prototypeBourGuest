@@ -39,11 +39,11 @@ namespace testLogin.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ApplicationUser>().ToTable("WebUsers");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("WebUserRoles");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("WebUserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("WebUserClaims");
-            modelBuilder.Entity<IdentityRole>().ToTable("WebRoles");
+            //modelBuilder.Entity<ApplicationUser>().ToTable("WebUsers");
+            //modelBuilder.Entity<IdentityUserRole>().ToTable("WebUserRoles");
+            //modelBuilder.Entity<IdentityUserLogin>().ToTable("WebUserLogins");
+            //modelBuilder.Entity<IdentityUserClaim>().ToTable("WebUserClaims");
+            //modelBuilder.Entity<IdentityRole>().ToTable("WebRoles");
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.HasDefaultSchema("bourguestMob");
         }

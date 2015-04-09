@@ -43,9 +43,9 @@ namespace testLogin.Migrations
 
             var floorplan = new List<Floorplan>
              {
-                new Floorplan{id=1,height=5,width=5,numObjects=3, restID = 1},
-                new Floorplan{id=2,height=5,width=5,numObjects=5, restID=7},
-                new Floorplan{id=3,height=5,width=5,numObjects=6, restID=7}
+                new Floorplan{id=1,height=5,width=5,numObjects=3, restID = 1, planName="Upstairs"},
+                new Floorplan{id=2,height=5,width=5,numObjects=5, restID=7, planName="Downstairs"},
+                new Floorplan{id=3,height=5,width=5,numObjects=6, restID=7, planName="Downystairs"}
              };
             floorplan.ForEach(r => context.Floorplan.AddOrUpdate(r));
             context.SaveChanges();

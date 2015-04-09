@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class seeding : IMigrationMetadata
+    public sealed partial class migrationc : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(seeding));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(migrationc));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504082146375_seeding"; }
+            get { return "201504091145193_migrationc"; }
         }
         
         string IMigrationMetadata.Source

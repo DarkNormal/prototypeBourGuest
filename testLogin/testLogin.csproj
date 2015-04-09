@@ -211,21 +211,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Bootstrap.cs" />
-    <Compile Include="Migrations\201504082146375_seeding.cs" />
-    <Compile Include="Migrations\201504082146375_seeding.Designer.cs">
-      <DependentUpon>201504082146375_seeding.cs</DependentUpon>
+    <Compile Include="Migrations\201504091139237_migrationA.cs" />
+    <Compile Include="Migrations\201504091139237_migrationA.Designer.cs">
+      <DependentUpon>201504091139237_migrationA.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504082151134_pluralchanges.cs" />
-    <Compile Include="Migrations\201504082151134_pluralchanges.Designer.cs">
-      <DependentUpon>201504082151134_pluralchanges.cs</DependentUpon>
+    <Compile Include="Migrations\201504091142253_migrationb.cs" />
+    <Compile Include="Migrations\201504091142253_migrationb.Designer.cs">
+      <DependentUpon>201504091142253_migrationb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504082214561_modelchanges.cs" />
-    <Compile Include="Migrations\201504082214561_modelchanges.Designer.cs">
-      <DependentUpon>201504082214561_modelchanges.cs</DependentUpon>
+    <Compile Include="Migrations\201504091145193_migrationc.cs" />
+    <Compile Include="Migrations\201504091145193_migrationc.Designer.cs">
+      <DependentUpon>201504091145193_migrationc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504082238402_blobchanges.cs" />
-    <Compile Include="Migrations\201504082238402_blobchanges.Designer.cs">
-      <DependentUpon>201504082238402_blobchanges.cs</DependentUpon>
+    <Compile Include="Migrations\201504091307499_deleteFunctionality.cs" />
+    <Compile Include="Migrations\201504091307499_deleteFunctionality.Designer.cs">
+      <DependentUpon>201504091307499_deleteFunctionality.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -368,17 +368,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504082146375_seeding.resx">
-      <DependentUpon>201504082146375_seeding.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504091139237_migrationA.resx">
+      <DependentUpon>201504091139237_migrationA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504082151134_pluralchanges.resx">
-      <DependentUpon>201504082151134_pluralchanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504091142253_migrationb.resx">
+      <DependentUpon>201504091142253_migrationb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504082214561_modelchanges.resx">
-      <DependentUpon>201504082214561_modelchanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504091145193_migrationc.resx">
+      <DependentUpon>201504091145193_migrationc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504082238402_blobchanges.resx">
-      <DependentUpon>201504082238402_blobchanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504091307499_deleteFunctionality.resx">
+      <DependentUpon>201504091307499_deleteFunctionality.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

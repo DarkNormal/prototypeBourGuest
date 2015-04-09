@@ -132,21 +132,67 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.type1, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.type1, new { htmlAttributes = new { @class = "form-control" } })
+
+                       <select class="form-control" for="type1" name="type1" id="type1" >
+                           <option label="Select..."></option>
+                           <option>American</option>
+                           <option>BBQ</option>
+                           <option>Chinese</option>
+                           <option>Family Friendly</option>
+                           <option>Healthy Option</option>
+                           <option>Indian</option>
+                           <option>Italian</option>
+                           <option>Portuguese</option>
+                           <option>Seafood</option>
+                           <option>Something Different</option>
+                           <option>Steakhouse</option>
+                           <option>Thai</option>
+                           <option>Traditional</option>
+                       </select>
                         @Html.ValidationMessageFor(model => model.type1, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.type2, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.type2, new { htmlAttributes = new { @class = "form-control" } })
+                        <select class="form-control" for="type2" name="type2" id="type2">
+                            <option label="Select..."></option>
+                            <option>American</option>
+                            <option>BBQ</option>
+                            <option>Chinese</option>
+                            <option>Family Friendly</option>
+                            <option>Healthy Option</option>
+                            <option>Indian</option>
+                            <option>Italian</option>
+                            <option>Portuguese</option>
+                            <option>Seafood</option>
+                            <option>Something Different</option>
+                            <option>Steakhouse</option>
+                            <option>Thai</option>
+                            <option>Traditional</option>
+                        </select>
                         @Html.ValidationMessageFor(model => model.type2, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.type3, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.type3, new { htmlAttributes = new { @class = "form-control" } })
+                        <select class="form-control" for="type3" name="type3" id="type3">
+                            <option label="Select..."></option>
+                            <option>American</option>
+                            <option>BBQ</option>
+                            <option>Chinese</option>
+                            <option>Family Friendly</option>
+                            <option>Healthy Option</option>
+                            <option>Indian</option>
+                            <option>Italian</option>
+                            <option>Portuguese</option>
+                            <option>Seafood</option>
+                            <option>Something Different</option>
+                            <option>Steakhouse</option>
+                            <option>Thai</option>
+                            <option>Traditional</option>
+                        </select>
                         @Html.ValidationMessageFor(model => model.type3, "", new { @class = "text-danger" })
                     </div>
                 </div>

@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class blobchanges : IMigrationMetadata
+    public sealed partial class deleteFunctionality : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(blobchanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(deleteFunctionality));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504082238402_blobchanges"; }
+            get { return "201504091307499_deleteFunctionality"; }
         }
         
         string IMigrationMetadata.Source

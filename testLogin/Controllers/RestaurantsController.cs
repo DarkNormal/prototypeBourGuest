@@ -75,7 +75,7 @@ namespace testLogin.Controllers
 
                     if (fileToUpload != null)
                     {
-                        
+
                         string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
                         string path = System.IO.Path.Combine(
                                               Server.MapPath("~/Content/Images"), pic);
@@ -91,7 +91,7 @@ namespace testLogin.Controllers
                         restaurant.appImage = bloburi;
 
                         System.IO.File.Delete(path);
-                        
+
 
 
                     }
@@ -212,7 +212,22 @@ namespace testLogin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            List<int> planIDlist = new List<int>();
             Restaurant restaurant = db.Restaurant.Find(id);
+            List<Floorplan> floorplan = db.Floorplan.SqlQuery("SELECT * FROM bourguestMob.Floorplan  WHERE restID = @rID ", new SqlParameter("@rID", id)).ToList();
+            for (int i = 0; i < floorplan.Count; i++)
+            {
+                planIDlist.Add(floorplan[i].id);
+            }
+            floorplan.ForEach(r => db.Floorplan.Remove(r));
+            db.SaveChanges();
+            for (int i = 0; i < planIDlist.Count; i++)
+            {
+                int tabParam = planIDlist[i];
+                List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", tabParam)).ToList();
+                tab.ForEach(r => db.tableObject.Remove(r));
+                db.SaveChanges();
+            }
             db.Restaurant.Remove(restaurant);
             db.SaveChanges();
             return RedirectToAction("Index");

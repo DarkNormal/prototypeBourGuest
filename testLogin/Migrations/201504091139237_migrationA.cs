@@ -3,7 +3,7 @@ namespace testLogin.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class seeding : DbMigration
+    public partial class migrationA : DbMigration
     {
         public override void Up()
         {
@@ -18,7 +18,7 @@ namespace testLogin.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "bourguestMob.Floorplans",
+                "bourguestMob.Floorplan",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -26,11 +26,12 @@ namespace testLogin.Migrations
                         width = c.Int(nullable: false),
                         numObjects = c.Int(nullable: false),
                         restID = c.Int(nullable: false),
+                        planName = c.String(),
                     })
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "bourguestMob.Restaurants",
+                "bourguestMob.Restaurant",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -64,7 +65,7 @@ namespace testLogin.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "bourguestMob.WebRoles",
+                "bourguestMob.AspNetRoles",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
@@ -74,20 +75,20 @@ namespace testLogin.Migrations
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
-                "bourguestMob.WebUserRoles",
+                "bourguestMob.AspNetUserRoles",
                 c => new
                     {
                         UserId = c.String(nullable: false, maxLength: 128),
                         RoleId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("bourguestMob.WebRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("bourguestMob.WebUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("bourguestMob.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("bourguestMob.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "bourguestMob.tableObjects",
+                "bourguestMob.tableObject",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -125,7 +126,7 @@ namespace testLogin.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "bourguestMob.WebUsers",
+                "bourguestMob.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
@@ -145,7 +146,7 @@ namespace testLogin.Migrations
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
-                "bourguestMob.WebUserClaims",
+                "bourguestMob.AspNetUserClaims",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -154,11 +155,11 @@ namespace testLogin.Migrations
                         ClaimValue = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("bourguestMob.WebUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("bourguestMob.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
-                "bourguestMob.WebUserLogins",
+                "bourguestMob.AspNetUserLogins",
                 c => new
                     {
                         LoginProvider = c.String(nullable: false, maxLength: 128),
@@ -166,11 +167,11 @@ namespace testLogin.Migrations
                         UserId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
-                .ForeignKey("bourguestMob.WebUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("bourguestMob.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
-                "bourguestMob.UsersTables",
+                "bourguestMob.UsersTable",
                 c => new
                     {
                         id = c.String(nullable: false, maxLength: 128),
@@ -182,28 +183,28 @@ namespace testLogin.Migrations
         
         public override void Down()
         {
-            DropForeignKey("bourguestMob.WebUserRoles", "UserId", "bourguestMob.WebUsers");
-            DropForeignKey("bourguestMob.WebUserLogins", "UserId", "bourguestMob.WebUsers");
-            DropForeignKey("bourguestMob.WebUserClaims", "UserId", "bourguestMob.WebUsers");
-            DropForeignKey("bourguestMob.WebUserRoles", "RoleId", "bourguestMob.WebRoles");
-            DropIndex("bourguestMob.WebUserLogins", new[] { "UserId" });
-            DropIndex("bourguestMob.WebUserClaims", new[] { "UserId" });
-            DropIndex("bourguestMob.WebUsers", "UserNameIndex");
-            DropIndex("bourguestMob.WebUserRoles", new[] { "RoleId" });
-            DropIndex("bourguestMob.WebUserRoles", new[] { "UserId" });
-            DropIndex("bourguestMob.WebRoles", "RoleNameIndex");
-            DropTable("bourguestMob.UsersTables");
-            DropTable("bourguestMob.WebUserLogins");
-            DropTable("bourguestMob.WebUserClaims");
-            DropTable("bourguestMob.WebUsers");
+            DropForeignKey("bourguestMob.AspNetUserRoles", "UserId", "bourguestMob.AspNetUsers");
+            DropForeignKey("bourguestMob.AspNetUserLogins", "UserId", "bourguestMob.AspNetUsers");
+            DropForeignKey("bourguestMob.AspNetUserClaims", "UserId", "bourguestMob.AspNetUsers");
+            DropForeignKey("bourguestMob.AspNetUserRoles", "RoleId", "bourguestMob.AspNetRoles");
+            DropIndex("bourguestMob.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("bourguestMob.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("bourguestMob.AspNetUsers", "UserNameIndex");
+            DropIndex("bourguestMob.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("bourguestMob.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("bourguestMob.AspNetRoles", "RoleNameIndex");
+            DropTable("bourguestMob.UsersTable");
+            DropTable("bourguestMob.AspNetUserLogins");
+            DropTable("bourguestMob.AspNetUserClaims");
+            DropTable("bourguestMob.AspNetUsers");
             DropTable("bourguestMob.UserReviews");
             DropTable("bourguestMob.tableObjectBookings");
-            DropTable("bourguestMob.tableObjects");
-            DropTable("bourguestMob.WebUserRoles");
-            DropTable("bourguestMob.WebRoles");
+            DropTable("bourguestMob.tableObject");
+            DropTable("bourguestMob.AspNetUserRoles");
+            DropTable("bourguestMob.AspNetRoles");
             DropTable("bourguestMob.Reviews");
-            DropTable("bourguestMob.Restaurants");
-            DropTable("bourguestMob.Floorplans");
+            DropTable("bourguestMob.Restaurant");
+            DropTable("bourguestMob.Floorplan");
             DropTable("bourguestMob.Bookings");
         }
     }

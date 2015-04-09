@@ -12,5 +12,6 @@ namespace testLogin.Models
         public int width { get; set; }
         public int numObjects { get; set; }
         public int restID { get; set; }
+        public string planName { get; set; }
     }
 }

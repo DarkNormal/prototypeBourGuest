@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class pluralchanges : IMigrationMetadata
+    public sealed partial class migrationA : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(pluralchanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(migrationA));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504082151134_pluralchanges"; }
+            get { return "201504091139237_migrationA"; }
         }
         
         string IMigrationMetadata.Source

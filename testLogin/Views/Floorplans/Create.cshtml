@@ -7,104 +7,72 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Floorplan</h4>
-        <hr />
-        <div>
-            <select id="floorsize" class="form-control" style=" float:left;">
-                <option selected="selected" disabled="disabled">Pick restaurant size</option>
-                <option value="small">Small - 5x5</option>
-                <option value="medium">Medium -10x10</option>
-                <option value="large">Large - 20x20</option>
-                <option value="xlarge">X-Large - 35x35</option>
-            </select>
-            <button type="button" class="btn btn-success" onclick="enableDrag()">Create</button>
-            <button type="button" class="btn btn-danger" onclick="deleteTable()">Delete</button>
-        </div>
-        <div id="drag" onload="">
-            <!-- left container -->
-            <div id="left">
-                <table id="table1">
-                    <colgroup>
-                        <col width="100">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <td class="trash single">
-                                <div class="drag clone  chair" id="seat">Seat</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="trash single">
-                                <div style="border-radius:50%" class="drag clone  stool" id="stool">Stool</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="trash single">
-                                <div class="drag clone  sqTable" id="sqT">Square Table</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="trash single">
-                                <div style="border-radius:50%" class="drag clone  rTable" id="Rnd">Round Table</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="trash custom">Trash</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button class="btn btn-success" onclick="saveLayout()">Save</button>
-            </div>
-            <!-- right container for interactive table-->
-            <div id="right">
-            </div>
-            <!-- Display block content.
-             Not implemented yet.
-             Will be used for database method (String search for _ to split values)
-            -->
-            <div id="message" class=""><br></div>
-        </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.width, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.height, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.height, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.height, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.numObjects, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.numObjects, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.numObjects, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+<div class="form-horizontal">
+    <h4>Floorplan</h4>
+    <hr />
+    <div>
+        <select id="floorsize" class="form-control" style=" float:left;">
+            <option selected="selected" disabled="disabled">Pick restaurant size</option>
+            <option value="small">Small - 5x5</option>
+            <option value="medium">Medium -10x10</option>
+            <option value="large">Large - 20x20</option>
+            <option value="xlarge">X-Large - 35x35</option>
+        </select>
+        <button type="button" class="btn btn-success" onclick="enableDrag()">Create</button>
+        <button type="button" class="btn btn-danger" onclick="deleteTable()">Delete</button>
+        <input type="text" name="planName" id="planName" class="form-control" style="margin-top: 10px" placeholder="Floorplan name e.g. Upstairs">
     </div>
-}
+    <div id="drag" onload="">
+        <!-- left container -->
+        <div id="left">
+            <table id="table1">
+                <colgroup>
+                    <col width="100">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td class="trash single">
+                            <div class="drag clone  chair" id="seat">Seat</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="trash single">
+                            <div style="border-radius:50%" class="drag clone  stool" id="stool">Stool</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="trash single">
+                            <div class="drag clone  sqTable" id="sqT">Square Table</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="trash single">
+                            <div style="border-radius:50%" class="drag clone  rTable" id="Rnd">Round Table</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="trash custom">Trash</td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn btn-success" style="width:100%;height:60px" onclick="saveLayout()">Save</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        <!-- right container for interactive table-->
+        <div id="right">
+        </div>
+        <!-- Display block content.
+         Not implemented yet.
+         Will be used for database method (String search for _ to split values)
+        -->
+        <div id="message" class=""><br></div>
+    </div>
 
-<div>
+    <div>
+    </div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 

@@ -63,35 +63,61 @@
                         @Html.ValidationMessageFor(model => model.longitude, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Extra Options: </label>
+                    <div class="col-md-10">
+                        <div class="btn-group" data-toggle="buttons">
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.wheelchair, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.wheelchair)
-                            @Html.ValidationMessageFor(model => model.wheelchair, "", new { @class = "text-danger" })
+                            @if (Model.wifi == true)
+                            {
+                                <label class="btn btn-primary active">
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    @Html.CheckBoxFor(model => model.wifi) WiFi zone
+                                </label>
+
+                            }
+                            else
+                            {
+                                <label class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                    @Html.CheckBoxFor(model => model.wifi) WiFi zone
+                                </label>
+                            }
+                            @if (Model.wheelchair == true)
+                            {
+                                <label class="btn btn-primary active">
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    @Html.CheckBoxFor(model => model.wheelchair) Wheelchair Accessibilty
+                                </label>
+                            }
+                            else
+                            {
+
+                                <label class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                    @Html.CheckBoxFor(model => model.wheelchair) Wheelchair Accessibilty
+                                </label>
+                            }
+                            @if (Model.vegan == true)
+                            {
+                                <label class="btn btn-primary active">
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    @Html.CheckBoxFor(model => model.vegan) Vegan Options
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="btn btn-primary  ">
+                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                    @Html.CheckBoxFor(model => model.vegan) Vegan Options
+                                </label>
+                            }
+
                         </div>
+
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.vegan, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.vegan)
-                            @Html.ValidationMessageFor(model => model.vegan, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.wifi, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.wifi)
-                            @Html.ValidationMessageFor(model => model.wifi, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.type1, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -119,7 +145,7 @@
                     @Html.LabelFor(model => model.type2, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
 
-                        <select class="form-control" for="type1" name="type1" id="type1">
+                        <select class="form-control" for="type2" name="type2" id="type2">
                             <option label="Select..."></option>
                             <option>American</option>
                             <option>BBQ</option>
@@ -142,7 +168,7 @@
                     @Html.LabelFor(model => model.type3, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
 
-                        <select class="form-control" for="type1" name="type1" id="type1">
+                        <select class="form-control" for="type3" name="type3" id="type3">
                             <option label="Select..."></option>
                             <option>American</option>
                             <option>BBQ</option>
@@ -197,7 +223,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Save" class="btn btn-success" />
                     </div>
                 </div>
             </div>
@@ -206,7 +233,7 @@
         }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            
         </div>
     </div>
     <div class="col-md-2"></div>
@@ -221,13 +248,25 @@
                 console.log(label);
                 $('#fileToUpload').val(label);
             });
-        });
-        $(document).on('change', '.btn-file :file', function () {
-            var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-            input.trigger('fileselect', [numFiles, label]);
 
+            $(document).on('change', '.btn-file :file', function () {
+                var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+
+            });
+            // Connect to 'change' event in order to toggle glyphs
+            $("[type='checkbox']").change(function () {
+                if ($(this).prop('checked')) {
+                    $(this).prev().addClass('glyphicon-ok-circle');
+                    $(this).prev().removeClass('glyphicon-unchecked');
+                }
+                else {
+                    $(this).prev().removeClass('glyphicon-ok-circle');
+                    $(this).prev().addClass('glyphicon-unchecked');
+                }
+            });
         });
     </script>
 }

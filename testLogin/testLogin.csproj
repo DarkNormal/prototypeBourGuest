@@ -211,21 +211,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Bootstrap.cs" />
-    <Compile Include="Migrations\201504091139237_migrationA.cs" />
-    <Compile Include="Migrations\201504091139237_migrationA.Designer.cs">
-      <DependentUpon>201504091139237_migrationA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091142253_migrationb.cs" />
-    <Compile Include="Migrations\201504091142253_migrationb.Designer.cs">
-      <DependentUpon>201504091142253_migrationb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091145193_migrationc.cs" />
-    <Compile Include="Migrations\201504091145193_migrationc.Designer.cs">
-      <DependentUpon>201504091145193_migrationc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091307499_deleteFunctionality.cs" />
-    <Compile Include="Migrations\201504091307499_deleteFunctionality.Designer.cs">
-      <DependentUpon>201504091307499_deleteFunctionality.cs</DependentUpon>
+    <Compile Include="Migrations\201504121704285_extraVerified.cs" />
+    <Compile Include="Migrations\201504121704285_extraVerified.Designer.cs">
+      <DependentUpon>201504121704285_extraVerified.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -245,9 +233,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
+    <Content Include="Content\awesome-bootstrap-checkbox.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\fourRnd.png" />
+    <Content Include="Content\Images\fourRndrot.png" />
+    <Content Include="Content\Images\fourSqt.png" />
+    <Content Include="Content\Images\fourSqtrot.png" />
     <Content Include="Content\Images\header.png" />
+    <Content Include="Content\Images\sixSqt.png" />
+    <Content Include="Content\Images\sixSqtrot.png" />
+    <Content Include="Content\Images\twoRnd.png" />
+    <Content Include="Content\Images\twoRndrot.png" />
+    <Content Include="Content\Images\twoSqt.png" />
+    <Content Include="Content\Images\twoSqtrot.png" />
     <Content Include="Content\Themes\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Themes\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Themes\Stock\bootstrap-theme.css" />
@@ -368,17 +367,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504091139237_migrationA.resx">
-      <DependentUpon>201504091139237_migrationA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091142253_migrationb.resx">
-      <DependentUpon>201504091142253_migrationb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091145193_migrationc.resx">
-      <DependentUpon>201504091145193_migrationc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091307499_deleteFunctionality.resx">
-      <DependentUpon>201504091307499_deleteFunctionality.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504121704285_extraVerified.resx">
+      <DependentUpon>201504121704285_extraVerified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

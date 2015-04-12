@@ -97,8 +97,13 @@ namespace testLogin.Migrations
             var tabBooking = new tableObjectBookings { id = 1, day = 30, month = 3, year = 2015, tabObjID = 5, time = 1700, depart = 1900 };
             context.tableObjectBookings.AddOrUpdate(tabBooking);
             context.SaveChanges();
-            var user = new UsersTable { id = "mark.lordan@gmail.com", password = "password" };
-            context.UsersTable.AddOrUpdate(user);
+            var user = new List<UsersTable>
+            {
+                new UsersTable{ id = "mark.lordan@gmail.com", password = "password", accountVerified = true },
+                new UsersTable{ id = "robertkenny21@gmail.com", password = "password", accountVerified = true},
+                new UsersTable{ id = "robert_kenny@outlook.com", password = "password", accountVerified = true}
+            };
+            user.ForEach(r =>context.UsersTable.AddOrUpdate(r));
             context.SaveChanges();
             var userReviews = new List<UserReviews>{
                 new UserReviews{id=1, userID="fake@review.net", restID="7"},

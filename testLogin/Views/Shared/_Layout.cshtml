@@ -14,7 +14,7 @@
     }
     @Styles.Render(Bootstrap.Bundle(theme))
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("Styles", false)
 </head>
 <body onload="REDIPS.drag.init()">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -50,7 +50,7 @@
             <div style="text-align:right">
                 <p>&copy; @DateTime.Now.Year - B-OurGuest</p>
                 <p>Find this project, and our Android application on <a href="https://github.com/DarkNormal/prototypeBourGuest">Github!</a></p>
-                <p>Proudly developed by <a href="https://twitter.com/MarkLordan">Mark Lordan</a>, <a href="https://www.linkedin.com/profile/view?id=229641088">Robert Kenny</a> and <a href="https://www.linkedin.com/profile/view?id=229641990">Thomas Murphy</a> .</p>
+                <p>Proudly developed by <a href="https://twitter.com/MarkLordan">Mark Lordan </a>, <a href="https://www.linkedin.com/profile/view?id=229641088">Robert Kenny</a> and <a href="https://www.linkedin.com/profile/view?id=229641990">Thomas Murphy</a> .</p>
             </div>
         </footer>
     </div>
@@ -58,7 +58,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/table.js")
     @Scripts.Render("~/Scripts/animate-effects.js")
-    @Scripts.Render("~/Scripts/redips-drag-min.js")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

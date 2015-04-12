@@ -2746,13 +2746,13 @@ REDIPS.drag = (function () {
 		opacity = REDIPS.drag.style.opacityDisabled;
 		// set styles for enabled DIV element
 		if (enable_flag === true || enable_flag === 'init') {
-			borderStyle = REDIPS.drag.style.borderEnabled;
+			//borderStyle = REDIPS.drag.style.borderEnabled;
 			cursor = 'move';
 			enabled = true;
 		}
 		// else set styles for disabled DIV element
 		else {
-			borderStyle = REDIPS.drag.style.borderDisabled;
+			//borderStyle = REDIPS.drag.style.borderDisabled;
 			cursor = 'auto';
 			enabled = false;
 		}

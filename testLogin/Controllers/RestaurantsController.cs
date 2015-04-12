@@ -51,7 +51,7 @@ namespace testLogin.Controllers
 
         // POST: Restaurants/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
+        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,wifi, type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
         {
             restaurant.Email = User.Identity.Name;
             restaurant.restaurantName = restaurant.restaurantName.ToLower();
@@ -127,57 +127,61 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
+        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,wifi, type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
         {
             restaurant.Email = User.Identity.Name;
+            restaurant.restaurantName = restaurant.restaurantName.ToLower();
             if (ModelState.IsValid)
             {
-                try
+                if (fileToUpload != null)
                 {
-                    string accountName = "bourguestblob";
-                    string accoutnKey = "k6cRVklwaada5k3EXVBE4219ESoTLF1yKzZPBwx0dGY1OWk7WSoR3VDPgpoXj0rSangBPDz9fdQaUY3j3jNIEw==";
-                    StorageCredentials creds = new StorageCredentials(accountName, accoutnKey);
-                    CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
-                    CloudBlobClient client = account.CreateCloudBlobClient();
-                    CloudBlobContainer sampleContainer = client.GetContainerReference("images");
-                    if (sampleContainer.CreateIfNotExists())
+                    try
                     {
-                        var permissions = sampleContainer.GetPermissions();
-                        permissions.PublicAccess = BlobContainerPublicAccessType.Container;
-                        sampleContainer.SetPermissions(permissions);
-                    }
-
-
-                    if (fileToUpload != null)
-                    {
-
-                        string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
-                        string path = System.IO.Path.Combine(
-                                              Server.MapPath("~/Content/Images"), pic);
-                        fileToUpload.SaveAs(path);
-                        string uniqueBlobName = string.Format("images/image_{0}{1}",
-                            Guid.NewGuid().ToString(), Path.GetExtension(pic));
-                        CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
-                        using (Stream file = System.IO.File.OpenRead(path))
+                        string accountName = "bourguestblob";
+                        string accoutnKey = "k6cRVklwaada5k3EXVBE4219ESoTLF1yKzZPBwx0dGY1OWk7WSoR3VDPgpoXj0rSangBPDz9fdQaUY3j3jNIEw==";
+                        StorageCredentials creds = new StorageCredentials(accountName, accoutnKey);
+                        CloudStorageAccount account = new CloudStorageAccount(creds, useHttps: true);
+                        CloudBlobClient client = account.CreateCloudBlobClient();
+                        CloudBlobContainer sampleContainer = client.GetContainerReference("images");
+                        if (sampleContainer.CreateIfNotExists())
                         {
-                            blob.UploadFromStream(file);
+                            var permissions = sampleContainer.GetPermissions();
+                            permissions.PublicAccess = BlobContainerPublicAccessType.Container;
+                            sampleContainer.SetPermissions(permissions);
                         }
-                        string bloburi = blob.Uri.ToString();
-                        restaurant.appImage = bloburi;
-
-                        System.IO.File.Delete(path);
 
 
+                        if (fileToUpload != null)
+                        {
 
+                            string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
+                            string path = System.IO.Path.Combine(
+                                                  Server.MapPath("~/Content/Images"), pic);
+                            fileToUpload.SaveAs(path);
+                            string uniqueBlobName = string.Format("images/image_{0}{1}",
+                                Guid.NewGuid().ToString(), Path.GetExtension(pic));
+                            CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
+                            using (Stream file = System.IO.File.OpenRead(path))
+                            {
+                                blob.UploadFromStream(file);
+                            }
+                            string bloburi = blob.Uri.ToString();
+                            restaurant.appImage = bloburi;
+
+                            System.IO.File.Delete(path);
+
+
+
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        return RedirectToAction("Index", "Home");
+                        Console.WriteLine(e);
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
                 }
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();

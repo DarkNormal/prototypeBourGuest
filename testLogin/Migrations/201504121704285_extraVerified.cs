@@ -3,7 +3,7 @@ namespace testLogin.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class migrationA : DbMigration
+    public partial class extraVerified : DbMigration
     {
         public override void Up()
         {
@@ -176,6 +176,7 @@ namespace testLogin.Migrations
                     {
                         id = c.String(nullable: false, maxLength: 128),
                         password = c.String(),
+                        accountVerified = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             

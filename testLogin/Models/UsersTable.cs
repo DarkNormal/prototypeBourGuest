@@ -9,6 +9,6 @@ namespace testLogin.Models
     {
         public string id { get; set; }
         public string password { get; set; }
-
+        public bool accountVerified { get; set; }
     }
 }

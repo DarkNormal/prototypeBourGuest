@@ -211,9 +211,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Bootstrap.cs" />
-    <Compile Include="Migrations\201504121704285_extraVerified.cs" />
-    <Compile Include="Migrations\201504121704285_extraVerified.Designer.cs">
-      <DependentUpon>201504121704285_extraVerified.cs</DependentUpon>
+    <Compile Include="Migrations\201504131515540_emailVerify.cs" />
+    <Compile Include="Migrations\201504131515540_emailVerify.Designer.cs">
+      <DependentUpon>201504131515540_emailVerify.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -241,6 +241,8 @@
     <Content Include="Content\Images\fourSqt.png" />
     <Content Include="Content\Images\fourSqtrot.png" />
     <Content Include="Content\Images\header.png" />
+    <Content Include="Content\Images\htcOne.png" />
+    <Content Include="Content\Images\Samsung.png" />
     <Content Include="Content\Images\sixSqt.png" />
     <Content Include="Content\Images\sixSqtrot.png" />
     <Content Include="Content\Images\twoRnd.png" />
@@ -354,6 +356,7 @@
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Account\SuccessDroid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
@@ -367,8 +370,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504121704285_extraVerified.resx">
-      <DependentUpon>201504121704285_extraVerified.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504131515540_emailVerify.resx">
+      <DependentUpon>201504131515540_emailVerify.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

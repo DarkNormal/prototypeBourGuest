@@ -7,13 +7,13 @@ namespace testLogin.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class extraVerified : IMigrationMetadata
+    public sealed partial class emailVerify : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(extraVerified));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(emailVerify));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504121704285_extraVerified"; }
+            get { return "201504131515540_emailVerify"; }
         }
         
         string IMigrationMetadata.Source

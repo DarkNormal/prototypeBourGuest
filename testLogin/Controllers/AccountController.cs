@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using testLogin.Models;
+using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace testLogin.Controllers
 {
@@ -201,6 +203,26 @@ namespace testLogin.Controllers
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+        // GET: /Account/ConfirmAndroid
+        [AllowAnonymous]
+        public ActionResult ConfirmAndroid(string userId)
+        {
+            if (userId == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+                    db.Database.ExecuteSqlCommand("UPDATE bourguestMob.UsersTable SET accountVerified = 'True' WHERE id = '" + userId+ "'");
+                    db.SaveChanges();
+                    //db.UsersTable.SqlQuery("UPDATE bourguestMob.UsersTable SET UsersTable.accountVerified = True WHERE UsersTable.id = 'mark.lordan@gmail.com'");
+
+
+                return View("SuccessDroid");
+            }
+
         }
 
         //

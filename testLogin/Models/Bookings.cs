@@ -10,6 +10,11 @@ namespace testLogin.Models
         public int id { get; set; }
         public int numTables { get; set; }
         public string userID { get; set; }
+        public int numPeople { get; set; }
+        public int day { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
+        public int time { get; set; }
 
     }
 }

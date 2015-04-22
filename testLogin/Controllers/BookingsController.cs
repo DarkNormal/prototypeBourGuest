@@ -9,114 +9,114 @@ using System.Web;
 using System.Web.Mvc;
 using testLogin.Models;
 
-
 namespace testLogin.Controllers
 {
-    [Authorize]
-    public class FloorplansController : Controller
+    public class BookingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Floorplans
+        // GET: Bookings
         public ActionResult Index()
         {
-            return View(db.Floorplan.ToList());
+            var restaurantID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+            if (restaurantID.id != 3)
+            {
 
+            }
+            return View(db.Bookings.SqlQuery("SELECT * FROM bourguestMob.Bookings WHERE restID = @id", new SqlParameter("@id", restaurantID.id)));
         }
-       
-        // GET: Floorplans/Create
+
+        // GET: Bookings/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Bookings bookings = db.Bookings.Find(id);
+            if (bookings == null)
+            {
+                return HttpNotFound();
+            }
+            return View(bookings);
+        }
+
+        // GET: Bookings/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Floorplans/Create
+        // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(Floorplan floorplan)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,numTables,userID,numPeople,day,month,year,time,restID")] Bookings bookings)
         {
-            floorplan.id = 1;
-            try
-            {
-                floorplan.id = db.Floorplan.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
-            }
-            catch(NullReferenceException e)
-            {
-            }
-            var resID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
-            floorplan.restID = resID.id;
             if (ModelState.IsValid)
             {
-                db.Floorplan.Add(floorplan);
+                db.Bookings.Add(bookings);
                 db.SaveChanges();
-                return Json(new {success = true });
-            }
-            else
-            {
-                return Json(new { success = false });
+                return RedirectToAction("Index");
             }
 
-
+            return View(bookings);
         }
 
-        // GET: Floorplans/Edit/5
+        // GET: Bookings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Floorplan floorplan = db.Floorplan.Find(id);
-            if (floorplan == null)
+            Bookings bookings = db.Bookings.Find(id);
+            if (bookings == null)
             {
                 return HttpNotFound();
             }
-            return View(floorplan);
+            return View(bookings);
         }
 
-        // POST: Floorplans/Edit/5
+        // POST: Bookings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,planName,active")] Floorplan floorplan)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "id,numTables,userID,numPeople,day,month,year,time,restID")] Bookings bookings)
         {
-           
-
             if (ModelState.IsValid)
             {
-                db.Entry(floorplan).State = EntityState.Modified;
+                db.Entry(bookings).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(floorplan);
+            return View(bookings);
         }
 
-        // GET: Floorplans/Delete/5
+        // GET: Bookings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Floorplan floorplan = db.Floorplan.Find(id);
-            if (floorplan == null)
+            Bookings bookings = db.Bookings.Find(id);
+            if (bookings == null)
             {
                 return HttpNotFound();
             }
-            return View(floorplan);
+            return View(bookings);
         }
 
-        // POST: Floorplans/Delete/5
+        // POST: Bookings/Delete/5
         [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Floorplan floorplan = db.Floorplan.Find(id);
-            db.Floorplan.Remove(floorplan);
-            List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", id)).ToList();
-            tab.ForEach(r => db.tableObject.Remove(r));
+            Bookings bookings = db.Bookings.Find(id);
+            db.Bookings.Remove(bookings);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

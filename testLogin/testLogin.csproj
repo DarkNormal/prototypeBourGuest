@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FloorplansController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,9 +212,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Bootstrap.cs" />
-    <Compile Include="Migrations\201504131515540_emailVerify.cs" />
-    <Compile Include="Migrations\201504131515540_emailVerify.Designer.cs">
-      <DependentUpon>201504131515540_emailVerify.cs</DependentUpon>
+    <Compile Include="Migrations\201504181440461_initial.cs" />
+    <Compile Include="Migrations\201504181440461_initial.Designer.cs">
+      <DependentUpon>201504181440461_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504221504472_activeinactive.cs" />
+    <Compile Include="Migrations\201504221504472_activeinactive.Designer.cs">
+      <DependentUpon>201504221504472_activeinactive.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -340,7 +345,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Floorplans\Create.cshtml" />
     <Content Include="Views\Floorplans\Delete.cshtml" />
-    <Content Include="Views\Floorplans\Details.cshtml" />
     <Content Include="Views\Floorplans\Edit.cshtml" />
     <Content Include="Views\Floorplans\Index.cshtml" />
     <Content Include="Views\Restaurants\Create.cshtml" />
@@ -357,6 +361,11 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Account\SuccessDroid.cshtml" />
+    <Content Include="Views\Bookings\Create.cshtml" />
+    <Content Include="Views\Bookings\Delete.cshtml" />
+    <Content Include="Views\Bookings\Details.cshtml" />
+    <Content Include="Views\Bookings\Edit.cshtml" />
+    <Content Include="Views\Bookings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
@@ -370,8 +379,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504131515540_emailVerify.resx">
-      <DependentUpon>201504131515540_emailVerify.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504181440461_initial.resx">
+      <DependentUpon>201504181440461_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504221504472_activeinactive.resx">
+      <DependentUpon>201504221504472_activeinactive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

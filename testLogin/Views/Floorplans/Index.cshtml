@@ -4,24 +4,40 @@
     ViewBag.Title = "Floorplan";
 }
 
-<h2>Index</h2>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#createButton').click(function () {
+                    window.location.href = "/Floorplans/Create";
+                }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div class="jumbotron">
-    <h1>MAKE YOUR OWN FLOORPLAN</h1>
-    <p>At B-OurGuest, we give you the ability to create and maintain your own floorplan easily.</p>
-    <p>Changes are instant, across the website, database and mobile application</p>
+            );
+        });
+    </script>
+
+}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="text-align:center">
+        <h2>MAKE YOUR OWN FLOORPLAN</h2>
+        <p>
+            At B-OurGuest, we give you the ability to create and maintain your own floorplan easily.
+            Changes are instant, across the website, database and mobile application.
+        </p>
+        <button class="btn btn-info" id="createButton">Create a new floorplan</button>
+    </div>
+    <div class="col-md-4"></div>
 </div>
+
+
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.height)
+            @Html.DisplayNameFor(model => model.planName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.width)
+            @Html.DisplayNameFor(model => model.active)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.numObjects)
@@ -33,21 +49,31 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.height)
+                @Html.DisplayFor(modelItem => item.planName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.width)
+                @if (item.active)
+                {
+                    <span class="label label-success">Yes</span>
+                }
+                else
+                {
+                    <span class="label label-warning">No</span>
+                }
             </td>
+
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.numObjects)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id}) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id})
+                <div class="btn-group" role="group">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { id = "editButton", @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                </div>
             </td>
         </tr>
     }
 
 </table>
-

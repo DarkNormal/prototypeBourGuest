@@ -92,7 +92,10 @@ function saveLayout() {
     var counter = 0;
     var $objArray = [];     //floorplan object array
     var objType;            //identifies type of object
+
+    var active = $("#active").is(":checked");
     pName = document.getElementById("planName").value;
+
     if (document.getElementById("table2")) {
         if (pName == "") {
             Log("Floorplan name must be entered");
@@ -160,7 +163,8 @@ function saveLayout() {
                 height: height,
                 width: width,
                 numObjects: counter,
-                planName: pName
+                planName: pName,
+                active: active
             };
             if ($objArray.length > 0) {
                 $.ajax({

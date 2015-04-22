@@ -57,7 +57,7 @@ namespace testLogin.Migrations
                 new Restaurant{id=7, restaurantName="niamh's kitchen", latitude=53.286374, 
                     longitude=-6.375106, wheelchair=false,vegan=true,wifi=false,type1="Traditional",
                     phoneNum="44554", openClose="4-9", bio="Food's ok, not great", 
-                    Email="mark.lordan@email.com", appImage="https://bourguestblob.blob.core.windows.net/images/images/image_5d49b855-8d5c-4fe6-b20e-a27bd66ff36b.jpg"}
+                    Email="mark.lordan@gmail.com", appImage="https://bourguestblob.blob.core.windows.net/images/images/image_5d49b855-8d5c-4fe6-b20e-a27bd66ff36b.jpg"}
              };
             restaurants.ForEach(r => context.Restaurant.AddOrUpdate(r));
             context.SaveChanges();
@@ -91,7 +91,7 @@ namespace testLogin.Migrations
             tableObjects.ForEach(r => context.tableObject.AddOrUpdate(r));
             context.SaveChanges();
 
-            var booking = new Bookings { id = 1, numTables = 1, userID = "mark.lordan@gmail.com" };
+            var booking = new Bookings { id = 1, numTables = 1, userID = "mark.lordan@gmail.com", numPeople =4, day=30, month=3, year=2015, restID=7 };
             context.Bookings.AddOrUpdate(booking);
             context.SaveChanges();
             var tabBooking = new tableObjectBookings { id = 1, day = 30, month = 3, year = 2015, tabObjID = 5, time = 1700, depart = 1900 };

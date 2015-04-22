@@ -12,6 +12,7 @@
     @{
         var theme = Session["CssTheme"] as string ?? Bootstrap.Theme.Darkly;
     }
+    @Styles.Render("~/Content/awesome-bootstrap-checkbox.css")
     @Styles.Render(Bootstrap.Bundle(theme))
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("Styles", false)

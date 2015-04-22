@@ -3,7 +3,7 @@ namespace testLogin.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class emailVerify : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -19,6 +19,7 @@ namespace testLogin.Migrations
                         month = c.Int(nullable: false),
                         year = c.Int(nullable: false),
                         time = c.Int(nullable: false),
+                        restID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             

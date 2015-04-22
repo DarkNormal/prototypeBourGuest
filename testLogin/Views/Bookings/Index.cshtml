@@ -1,0 +1,82 @@
+﻿@model IEnumerable<testLogin.Models.Bookings>
+@{
+    ViewBag.Title = "Index";
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var month = document.getElementsByClassName("month");
+            for(var i = 0; i<month.length; i++){
+                month[i].innerHTML = Number(month[i].innerHTML) +1;                
+            }
+            $('#createButton').click(function () {
+                window.location.href = "/Bookings/Create";
+            }
+
+            );
+        });
+
+
+    </script>
+}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2>Reservation Management</h2>
+        <p>
+            <button class="btn btn-info" id="createButton">Add a new Reservation</button>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.numTables)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.userID)
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.time)
+                </th>
+                <th></th>
+            </tr>
+            @{int i = 0;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numTables)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.day) /
+                        <span class="month">@Html.DisplayFor(modelItem => item.month)</span> /
+
+                        @Html.DisplayFor(modelItem => item.year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.time)
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { id = "editButton", @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                        </div>
+                    </td>
+                </tr>
+                i++;
+            }
+
+        </table>
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+
+

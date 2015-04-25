@@ -39,10 +39,32 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <div id="deleteWarning" class="alert alert-warning" style="display:none;">
+                <h4>Warning!</h4>
+                <p>Deleting a floorplan cannot be un-done!</p>
+                <p>If there are any reservations for this floorplan, you must delete them first.</p>
+                <input type="submit" value="I know, delete floorplan" class="btn btn-danger" />
+                <input type="button" id="cancelDelete" value="Cancel" class="btn btn-info" />
+            </div>
+            <div class="btn-group">
+                @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-info" })
+                <input type="button" id="myButton" value="Delete" class="btn btn-danger" />
+            </div>
+            }
         </div>
-    }
-</div>
+
+        @section Scripts{
+            <script>
+        $('#myButton').click(function () {
+            $('#deleteWarning').toggle('slow', function () {
+                // Animation complete.
+            });
+        });
+        $('#cancelDelete').click(function () {
+            $('#deleteWarning').toggle('slow', function () {
+                // Animation complete.
+            });
+        });
+            </script>
+        }

@@ -35,13 +35,19 @@
                 <dd>
                     @Html.DisplayFor(model => model.longitude)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.wheelchair)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.wheelchair)
+                    @if (Model.wheelchair)
+                    {
+                        <span class="label label-success">Yes</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">No</span>
+                    }
                 </dd>
 
                 <dt>
@@ -49,14 +55,27 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.vegan)
+                    @if (Model.vegan)
+                    {
+                        <span class="label label-success">Yes</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">No</span>
+                    }
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.wifi)
                 </dt>
-
                 <dd>
-                    @Html.DisplayFor(model => model.wifi)
+                    @if (Model.wifi)
+                    {
+                        <span class="label label-success">Yes</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">No</span>
+                    }
                 </dd>
 
                 <dt>
@@ -114,11 +133,16 @@
                     <div id="deleteWarning" class="alert alert-warning" style="display:none;">
                         <h4>Warning!</h4>
                         <p>Deleting your restaurant will delete all associated floorplans!</p>
+                        <p>If there are any reservations for your restaurant, you must delete them first.</p>
                         <input type="submit" value="I know, delete restaurant" class="btn btn-danger" />
                         <input type="button" id="cancelDelete" value="Cancel" class="btn btn-info" />
                     </div>
-                    <input type="button" id="myButton" value="Delete"  class="btn btn-danger" /> |
-                    @Html.ActionLink("Back to List", "Index", new { id = "backButton"}, new { @class = "btn btn-info" })
+                    <div class="btn-group">
+                        @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-info" })
+                        <input type="button" id="myButton" value="Delete" class="btn btn-danger" />
+                    </div>
+
+
                 </div>
             }
         </div>

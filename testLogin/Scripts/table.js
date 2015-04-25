@@ -29,15 +29,13 @@ function enableDrag() {
         alert("Pick a value from the dropdown list");           //alert to inform user a choice must be made
     }
     else {
-        alert("JS create plan enabled")
         var tabHeight,
             tabWidth;
-        if (floorsize == "small") {         //small floorplan size
+        if (floorsize == "regular") {         //small floorplan size
             width = 5;
             height = 5;
-
         }
-        else{                               //medium floorplan size
+        else {                               //medium floorplan size
             width = 10;
             height = 10;
         }
@@ -100,7 +98,7 @@ function saveLayout() {
         if (pName == "") {
             Log("Floorplan name must be entered");
         }
-        else{
+        else {
 
             var objCreate = function (tableObjectID, xcoord, ycoord, objType, available) {
                 this.tableObjectID = tableObjectID;
@@ -144,7 +142,7 @@ function saveLayout() {
                         else if (tdContent.indexOf("twoRnd") > -1) {
                             objType = 22;                           //regular round table, capacity is 2, type is 22 (22-20 = 2, capacity)
                         }
-                        else if(tdContent.indexOf("twoRoundRot") > -1){
+                        else if (tdContent.indexOf("twoRoundRot") > -1) {
                             objType = 32;                           //rotated round table, capacity is 2, type is 32 (32-30 = 2, capacity)
                         }
                         //object types go up in 10s, so in application:
@@ -174,7 +172,7 @@ function saveLayout() {
                     data: JSON.stringify($floorplan),
                     success: function (result) {
                         if (result.success) {           //if it was successful, then do the table objects too
-                            Log("Floor plan created successfully, adding plan objects...");
+
                             $.ajax({
                                 url: "/tableObjects/Create",
                                 type: "POST",
@@ -182,9 +180,7 @@ function saveLayout() {
                                 data: JSON.stringify($objArray),
                                 success: function (result2) {
                                     if (result2.success) {
-                                        Log("Plan objects created successfully");
-                                    } else {
-                                        Log("Failed to create plan objects");
+                                        window.location.href = '/Floorplans/Index/';
                                     }
                                 }
 

@@ -3,6 +3,41 @@
 @{
     ViewBag.Title = "Edit";
 }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var image = document.getElementById('appImage');
+            var imageLink = image.value;
+            $('#fileToUpload').val(imageLink);
+
+            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+                console.log(numFiles);
+                console.log(label);
+                $('#fileToUpload').val(label);
+            });
+
+            $(document).on('change', '.btn-file :file', function () {
+                var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+
+            });
+            // Connect to 'change' event in order to toggle glyphs
+            $("[type='checkbox']").change(function () {
+                if ($(this).prop('checked')) {
+                    $(this).prev().addClass('glyphicon-ok-circle');
+                    $(this).prev().removeClass('glyphicon-unchecked');
+                }
+                else {
+                    $(this).prev().removeClass('glyphicon-ok-circle');
+                    $(this).prev().addClass('glyphicon-unchecked');
+                }
+            });
+        });
+    </script>
+}
 <style>
     .btn-file {
         position: relative;
@@ -30,7 +65,8 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-6">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Restaurants", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -39,6 +75,7 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.id)
+                @Html.HiddenFor(model => model.appImage)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.restaurantName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -219,12 +256,14 @@
                         </span>
                         <input type="text" id="fileToUpload" class="form-control">
                     </div>
-
+                    <p>Note: Your restaurant image is stored in the cloud, and is accessible using the link in the field above.</p>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-primary" })
-                        <input type="submit" value="Save" class="btn btn-success" />
+                        <div class="btn-group">
+                            @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-primary" })
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -233,40 +272,10 @@
         }
 
         <div>
-            
+
         </div>
     </div>
     <div class="col-md-2"></div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
-            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
-                console.log(numFiles);
-                console.log(label);
-                $('#fileToUpload').val(label);
-            });
 
-            $(document).on('change', '.btn-file :file', function () {
-                var input = $(this),
-                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-
-            });
-            // Connect to 'change' event in order to toggle glyphs
-            $("[type='checkbox']").change(function () {
-                if ($(this).prop('checked')) {
-                    $(this).prev().addClass('glyphicon-ok-circle');
-                    $(this).prev().removeClass('glyphicon-unchecked');
-                }
-                else {
-                    $(this).prev().removeClass('glyphicon-ok-circle');
-                    $(this).prev().addClass('glyphicon-unchecked');
-                }
-            });
-        });
-    </script>
-}

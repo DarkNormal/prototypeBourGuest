@@ -18,12 +18,15 @@ namespace testLogin.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var restaurantID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
-            if (restaurantID.id != 3)
+            try
             {
-
+                var restaurantID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+                return View(db.Bookings.SqlQuery("SELECT * FROM bourguestMob.Bookings WHERE restID = @id", new SqlParameter("@id", restaurantID.id)));
             }
-            return View(db.Bookings.SqlQuery("SELECT * FROM bourguestMob.Bookings WHERE restID = @id", new SqlParameter("@id", restaurantID.id)));
+            catch (Exception e)
+            {
+                return RedirectToAction("Create", "Restaurants");
+            }
         }
 
         // GET: Bookings/Details/5
@@ -52,10 +55,12 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,numTables,userID,numPeople,day,month,year,time,restID")] Bookings bookings)
+        public ActionResult Create([Bind(Include = "id,numTables,userID,numPeople,day,month,year,time")] Bookings bookings)
         {
             if (ModelState.IsValid)
             {
+                var resID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+                bookings.restID = resID.id;
                 db.Bookings.Add(bookings);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,10 +89,12 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,numTables,userID,numPeople,day,month,year,time,restID")] Bookings bookings)
+        public ActionResult Edit([Bind(Include = "id,numTables,userID,numPeople,day,month,year,time")] Bookings bookings)
         {
             if (ModelState.IsValid)
             {
+                var resID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+                bookings.restID = resID.id;
                 db.Entry(bookings).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

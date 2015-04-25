@@ -74,22 +74,22 @@ namespace testLogin.Controllers
                             sampleContainer.SetPermissions(permissions);
                         }
 
-                            string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
-                            string path = System.IO.Path.Combine(
-                                                  Server.MapPath("~/Content/Images"), pic);
-                            fileToUpload.SaveAs(path);
-                            string uniqueBlobName = string.Format("images/image_{0}{1}",
-                                Guid.NewGuid().ToString(), Path.GetExtension(pic));
-                            CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
-                            using (Stream file = System.IO.File.OpenRead(path))
-                            {
-                                blob.UploadFromStream(file);
-                            }
-                            string bloburi = blob.Uri.ToString();
-                            restaurant.appImage = bloburi;
-                            //temporarily store image in webiste conent folder, but delete immediately
-                            //once blob has been created and stored
-                            System.IO.File.Delete(path);
+                        string pic = System.IO.Path.GetFileName(fileToUpload.FileName);
+                        string path = System.IO.Path.Combine(
+                                              Server.MapPath("~/Content/Images"), pic);
+                        fileToUpload.SaveAs(path);
+                        string uniqueBlobName = string.Format("images/image_{0}{1}",
+                            Guid.NewGuid().ToString(), Path.GetExtension(pic));
+                        CloudBlockBlob blob = sampleContainer.GetBlockBlobReference(uniqueBlobName);
+                        using (Stream file = System.IO.File.OpenRead(path))
+                        {
+                            blob.UploadFromStream(file);
+                        }
+                        string bloburi = blob.Uri.ToString();
+                        restaurant.appImage = bloburi;
+                        //temporarily store image in webiste conent folder, but delete immediately
+                        //once blob has been created and stored
+                        System.IO.File.Delete(path);
                     }
                     catch (Exception e)
                     {
@@ -127,7 +127,7 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,wifi, type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
+        public ActionResult Edit([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,wifi, type1,type2,type3,openClose,bio, phoneNum,appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
         {
             restaurant.Email = User.Identity.Name;
             restaurant.restaurantName = restaurant.restaurantName.ToLower();
@@ -210,24 +210,30 @@ namespace testLogin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            List<int> planIDlist = new List<int>();
-            Restaurant restaurant = db.Restaurant.Find(id);
-            List<Floorplan> floorplan = db.Floorplan.SqlQuery("SELECT * FROM bourguestMob.Floorplan  WHERE restID = @rID ", new SqlParameter("@rID", id)).ToList();
-            for (int i = 0; i < floorplan.Count; i++)
+            List<Bookings> bookings = db.Bookings.SqlQuery("SELECT * FROM bourguestMob.Bookings  WHERE restID = @rID ", new SqlParameter("@rID", id)).ToList();
+            if (bookings.Count == 0)
             {
-                planIDlist.Add(floorplan[i].id);
-            }
-            floorplan.ForEach(r => db.Floorplan.Remove(r));
-            db.SaveChanges();
-            for (int i = 0; i < planIDlist.Count; i++)
-            {
-                int tabParam = planIDlist[i];
-                List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", tabParam)).ToList();
-                tab.ForEach(r => db.tableObject.Remove(r));
+                List<int> planIDlist = new List<int>();
+                Restaurant restaurant = db.Restaurant.Find(id);
+                List<Floorplan> floorplan = db.Floorplan.SqlQuery("SELECT * FROM bourguestMob.Floorplan  WHERE restID = @rID ", new SqlParameter("@rID", id)).ToList();
+                for (int i = 0; i < floorplan.Count; i++)
+                {
+                    planIDlist.Add(floorplan[i].id);
+                }
+
+                floorplan.ForEach(r => db.Floorplan.Remove(r));
                 db.SaveChanges();
+                for (int i = 0; i < planIDlist.Count; i++)
+                {
+                    int tabParam = planIDlist[i];
+                    List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", tabParam)).ToList();
+                    tab.ForEach(r => db.tableObject.Remove(r));
+                    db.SaveChanges();
+                }
+                db.Restaurant.Remove(restaurant);
+                db.SaveChanges();
+
             }
-            db.Restaurant.Remove(restaurant);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

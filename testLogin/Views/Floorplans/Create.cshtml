@@ -21,12 +21,14 @@
             content: "• ";
             color: #375a7f; /* or whatever color you prefer */
         }
-        .header{
-            text-align:center;
+
+        .header {
+            text-align: center;
         }
-        .button-section{
-            margin-top:10px;
-            margin-left:25px;
+
+        .button-section {
+            margin-top: 10px;
+            margin-left: 25px;
         }
     </style>
 }
@@ -40,7 +42,8 @@
         <div class="header">
             <p>Use our easy drag-and-drop tool below to recreate your restaurant's floorplan.</p>
             <p> Give it a name, save it, and it will be available instantly on our Android app!</p>
-            
+            <p>Note: We reccommend using Google Chrome for optimal results, floorplan creation on a mobile is not fully supported. (Sizing issues)</p>
+
         </div>
         <div id="infotab" class="alert alert-info" style="display:none;">
             <p>Currently all floorplans are set as active, which means diners will be able to book them!</p>
@@ -75,8 +78,8 @@
         <div class="input-group" style="display:block">
             <select id="floorsize" class="form-control">
                 <option selected="selected" disabled="disabled">Pick restaurant size</option>
-                <option value="Regular">Small - 5x5</option>
-                <option value="Normal">Medium -10x10</option>
+                <option value="regular">Regular - 5x5</option>
+                <option value="large">Large -10x10</option>
                 <option disabled="disabled">More options coming soon!</option>
             </select>
             <span class="input-group-btn">
@@ -146,6 +149,16 @@
                 <tr>
                     <td colspan="2" class="trash custom">Trash</td>
                 </tr>
+                <tr>
+                    <td class="single" style="height:40px;">
+
+                        @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-info" })
+
+                    </td>
+                    <td class="single" style="height:40px">
+                        <button style="width:100%;" class="btn btn-success" onclick="saveLayout()">Save</button>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -161,12 +174,7 @@
     <div id="message" class=""><br></div>
 </div>
 
-<div class="button-section">
 
-    @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-info" })
-    <button class="btn btn-success" onclick="saveLayout()">Save</button>
-    <p>Note: We reccommend using Google Chrome for optimal results, floorplan creation on a mobile is not fully supported. (Sizing issues)</p>
-</div>
 
 
 @section Scripts {

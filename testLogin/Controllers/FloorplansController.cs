@@ -20,10 +20,17 @@ namespace testLogin.Controllers
         // GET: Floorplans
         public ActionResult Index()
         {
-            return View(db.Floorplan.ToList());
-
+            try
+            {
+                var resID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
+                return View(db.Floorplan.SqlQuery("SELECT * FROM bourguestMob.Floorplan WHERE restID = @restID", new SqlParameter("@restID", resID.id)));
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Create", "Restaurants");
+            }
         }
-       
+
         // GET: Floorplans/Create
         public ActionResult Create()
         {
@@ -41,7 +48,7 @@ namespace testLogin.Controllers
             {
                 floorplan.id = db.Floorplan.OrderByDescending(t => t.id).FirstOrDefault().id + 1;
             }
-            catch(NullReferenceException e)
+            catch (NullReferenceException e)
             {
             }
             var resID = db.Restaurant.SqlQuery("SELECT * FROM bourguestMob.Restaurant WHERE Email = @email", new SqlParameter("@email", User.Identity.Name)).First();
@@ -50,7 +57,7 @@ namespace testLogin.Controllers
             {
                 db.Floorplan.Add(floorplan);
                 db.SaveChanges();
-                return Json(new {success = true });
+                return Json(new { success = true });
             }
             else
             {
@@ -80,9 +87,9 @@ namespace testLogin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,planName,active")] Floorplan floorplan)
+        public ActionResult Edit([Bind(Include = "id,planName,active,width,height,numObjects, restID")] Floorplan floorplan)
         {
-           
+
 
             if (ModelState.IsValid)
             {
@@ -113,11 +120,18 @@ namespace testLogin.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
+
             Floorplan floorplan = db.Floorplan.Find(id);
-            db.Floorplan.Remove(floorplan);
-            List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", id)).ToList();
-            tab.ForEach(r => db.tableObject.Remove(r));
-            db.SaveChanges();
+
+            List<Bookings> bookings = db.Bookings.SqlQuery("SELECT * FROM bourguestMob.Bookings  WHERE restID = @rID ", new SqlParameter("@rID", floorplan.restID)).ToList();
+            if (bookings.Count == 0)
+            {
+                db.Floorplan.Remove(floorplan);
+                List<tableObject> tab = db.tableObject.SqlQuery("SELECT * FROM bourguestMob.tableObject WHERE floorplanID = @planID", new SqlParameter("@planID", id)).ToList();
+                tab.ForEach(r => db.tableObject.Remove(r));
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

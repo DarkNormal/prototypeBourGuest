@@ -6,8 +6,8 @@
     <script>
         $(document).ready(function () {
             var month = document.getElementsByClassName("month");
-            for(var i = 0; i<month.length; i++){
-                month[i].innerHTML = Number(month[i].innerHTML) +1;                
+            for (var i = 0; i < month.length; i++) {
+                month[i].innerHTML = Number(month[i].innerHTML) + 1;
             }
             $('#createButton').click(function () {
                 window.location.href = "/Bookings/Create";
@@ -35,6 +35,9 @@
                     @Html.DisplayNameFor(model => model.userID)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.numPeople)
+                </th>
+                <th>
                     Date
                 </th>
                 <th>
@@ -51,6 +54,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.userID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numPeople)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.day) /

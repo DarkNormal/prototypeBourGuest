@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link type="text/css"  rel="stylesheet" href="~/Content/animate.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/animate.css">
     <link href='//fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - B-OurGuest</title>
@@ -13,8 +13,9 @@
         var theme = Session["CssTheme"] as string ?? Bootstrap.Theme.Darkly;
     }
     @Styles.Render("~/Content/awesome-bootstrap-checkbox.css")
+
     @Styles.Render(Bootstrap.Bundle(theme))
-    @Scripts.Render("~/bundles/modernizr")
+
     @RenderSection("Styles", false)
 </head>
 <body onload="REDIPS.drag.init()">
@@ -36,7 +37,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/Restaurants">Restaurant Management</a></li>
                             <li><a href="/Floorplans">Floorplans</a></li>
-                            <li><a href="Bookings">Booking Management</a></li>
+                            <li><a href="/Bookings">Booking Management</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -51,15 +52,18 @@
             <div style="text-align:right">
                 <p>&copy; @DateTime.Now.Year - B-OurGuest</p>
                 <p>Find this project, and our Android application on <a href="https://github.com/DarkNormal/prototypeBourGuest">Github!</a></p>
-                <p>Proudly developed by <a href="https://twitter.com/MarkLordan">Mark Lordan </a>, <a href="https://www.linkedin.com/profile/view?id=229641088">Robert Kenny</a> and <a href="https://www.linkedin.com/profile/view?id=229641990">Thomas Murphy</a> .</p>
+                <p>Proudly developed by <a href="https://twitter.com/MarkLordan">Mark Lordan.</p>
             </div>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/table.js")
+    @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/Scripts/animate-effects.js")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
 </body>
 </html>

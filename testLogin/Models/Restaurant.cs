@@ -10,6 +10,7 @@ namespace testLogin.Models
     {
 
         public int id { get; set; }
+        [Required(ErrorMessage = "A restaurant picture is required")]
         public string appImage { get; set; }
         [Display(Name = "Restaurant Name: ")]
         [Required(ErrorMessage = "The  restaurant name is required")]

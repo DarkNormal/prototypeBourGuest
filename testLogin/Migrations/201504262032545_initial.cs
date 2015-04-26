@@ -33,6 +33,7 @@ namespace testLogin.Migrations
                         numObjects = c.Int(nullable: false),
                         restID = c.Int(nullable: false),
                         planName = c.String(),
+                        active = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             
@@ -41,7 +42,7 @@ namespace testLogin.Migrations
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
-                        appImage = c.String(),
+                        appImage = c.String(nullable: false),
                         restaurantName = c.String(nullable: false),
                         latitude = c.Double(nullable: false),
                         longitude = c.Double(nullable: false),

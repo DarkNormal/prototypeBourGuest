@@ -13,10 +13,12 @@ namespace testLogin.Models
         public int numTables { get; set; }
         [Display(Name = "User email")]
         public string userID { get; set; }
+        [Display(Name= "Number of People")]
         public int numPeople { get; set; }
         public int day { get; set; }
         public int month { get; set; }
         public int year { get; set; }
+        [Display(Name = "Time")]
         public int time { get; set; }
         public int restID { get; set; }
 

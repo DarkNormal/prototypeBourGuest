@@ -7,26 +7,52 @@
 {
 
     @Scripts.Render("~/bundles/jqueryval")
-    @*<script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8vm8eg1hK4jMG8C-vyIn1U4qOGLEw-IA">
-        </script>
-        <script type="text/javascript">
-            function initialize() {
-                var mapOptions = {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 8
-                };
-                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
-            }
-            google.maps.event.addDomListener(window, 'load', initialize);
-        </script>*@
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8vm8eg1hK4jMG8C-vyIn1U4qOGLEw-IA">
+    </script>
+    <script type="text/javascript">
+        var marker;
+        var lat = document.getElementById('latitude');
+        var long = document.getElementById('longitude');
+        function initialize() {
+            var mapOptions = {
+                center: { lat: 53.3243201, lng: -6.251695 },
+                zoom: 11
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+
+            google.maps.event.addListener(map, 'click', function (e) {
+                if (!marker) {
+                    placeMarker(e.latLng, map);
+                }
+                else {
+                    marker.setPosition(e.latLng);
+                }
+                lat.value = e.latLng.lat();
+                long.value = e.latLng.lng();
+               
+            });
+        }
+
+        function placeMarker(position, map) {
+            marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            map.panTo(position);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
     <script>
         $(document).ready(function () {
+            var image = document.getElementById('appImage');
             $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
                 console.log(numFiles);
                 console.log(label);
                 $('#fileToUpload').val(label);
+                image.value = label;
             });
 
             $(document).on('change', '.btn-file :file', function () {
@@ -82,38 +108,34 @@
                             new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-
+            @Html.HiddenFor(model => model.latitude)
+            @Html.HiddenFor(model => model.appImage)
+            @Html.HiddenFor(model => model.longitude)
             <div class="form-horizontal" style="padding:60px">
-                <h4>Create a Restaurant</h4>
+                <div style="text-align:center">
+                    <h4>Create a Restaurant</h4>
+                    <p>
+                        Fill in this form to register your restaurant details for us. Use the Map to place a marker for your restaurant so people can find you in the B-Our Guest Android app.
+                        You can edit any information you enter here afterwards.
+                    </p>
+                </div>
+
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.restaurantName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.restaurantName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         @Html.EditorFor(model => model.restaurantName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.restaurantName, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                @*<div id="map-canvas" style="height: 700px;width:700px; margin: 0; padding: 0;"></div>*@
                 <div class="form-group">
-                    @Html.LabelFor(model => model.latitude, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.latitude, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.latitude, "", new { @class = "text-danger" })
-                    </div>
+                    <div id="map-canvas" style="height: 400px;width:100%; margin: 0; padding: 0;"></div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.longitude, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.longitude, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.longitude, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Extra Options: </label>
-                    <div class="col-md-10">
+                    <label class="control-label col-md-3">Extra Options: </label>
+                    <div class="col-md-9">
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary">
                                 <span class="glyphicon glyphicon-unchecked"></span>
@@ -134,8 +156,8 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.type1, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.type1, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
 
                         <select class="form-control" for="type1" name="type1" id="type1">
                             <option label="Select..."></option>
@@ -157,8 +179,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.type2, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.type2, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         <select class="form-control" for="type2" name="type2" id="type2">
                             <option label="Select..."></option>
                             <option>American</option>
@@ -179,8 +201,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.type3, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.type3, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         <select class="form-control" for="type3" name="type3" id="type3">
                             <option label="Select..."></option>
                             <option>American</option>
@@ -202,43 +224,49 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.bio, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.bio, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         @Html.EditorFor(model => model.bio, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.bio, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.openClose, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.openClose, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         @Html.EditorFor(model => model.openClose, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.openClose, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.phoneNum, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.phoneNum, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         @Html.EditorFor(model => model.phoneNum, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.phoneNum, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2">Restaurant image: </label>
-                    <div class="input-group">
+                    <label class="control-label col-md-3">Restaurant image: </label>
+                    <div class="col-md-9 input-group">
                         <span class="input-group-btn">
                             <span class="btn btn-primary btn-file">
                                 Browse… <input type="file" name="fileToUpload">
                             </span>
                         </span>
                         <input type="text" id="fileToUpload" class="form-control">
-                    </div>
 
+                    </div>
+                    <div class="col-md-offset-3 col-md-9">
+                        @Html.ValidationMessageFor(model => model.appImage, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                    <div class="col-md-offset-3 col-md-9">
+                        <div class="btn-group">
+                            @Html.ActionLink("Back", "Index", new { id = "backButton" }, new { @class = "btn btn-info" })
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -247,7 +275,7 @@
 
 
         <div>
-            @Html.ActionLink("Back to List", "Index", new { id = "backButton" }, new { @class = "btn btn-info" })
+
         </div>
 
     </div>

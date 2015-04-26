@@ -51,7 +51,7 @@ namespace testLogin.Controllers
 
         // POST: Restaurants/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,wifi, type1,type2,type3,openClose,bio, phoneNum, appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
+        public ActionResult Create([Bind(Include = "id,restaurantName,latitude,longitude,wheelchair,vegan,wifi, type1,type2,type3,openClose,bio, phoneNum,appImage")] Restaurant restaurant, HttpPostedFileBase fileToUpload)
         {
             restaurant.Email = User.Identity.Name;
             restaurant.restaurantName = restaurant.restaurantName.ToLower();
@@ -90,15 +90,19 @@ namespace testLogin.Controllers
                         //temporarily store image in webiste conent folder, but delete immediately
                         //once blob has been created and stored
                         System.IO.File.Delete(path);
+                        db.Restaurant.Add(restaurant);
+                        db.SaveChanges();
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
                     }
                 }
-                //add restaurant regardless if they have an image or not
-                db.Restaurant.Add(restaurant);
-                db.SaveChanges();
+                else
+                {
+                    return View(restaurant);
+                }
+                
 
                 // after successfully uploading redirect the user
                 return RedirectToAction("Index", "Restaurants");

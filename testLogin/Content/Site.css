@@ -29,11 +29,6 @@ textarea {
     width: 100%;
 }
 
-.btn-success {
-    background-color: #61ba9e;
-    border-color: #4fb393;
-}
-
 /* drag container*/
 #drag {
     border: 2px dashed LightBlue;

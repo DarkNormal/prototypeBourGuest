@@ -212,13 +212,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Bootstrap.cs" />
-    <Compile Include="Migrations\201504181440461_initial.cs" />
-    <Compile Include="Migrations\201504181440461_initial.Designer.cs">
-      <DependentUpon>201504181440461_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504221504472_activeinactive.cs" />
-    <Compile Include="Migrations\201504221504472_activeinactive.Designer.cs">
-      <DependentUpon>201504221504472_activeinactive.cs</DependentUpon>
+    <Compile Include="Migrations\201504262032545_initial.cs" />
+    <Compile Include="Migrations\201504262032545_initial.Designer.cs">
+      <DependentUpon>201504262032545_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -414,11 +410,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504181440461_initial.resx">
-      <DependentUpon>201504181440461_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504221504472_activeinactive.resx">
-      <DependentUpon>201504221504472_activeinactive.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504262032545_initial.resx">
+      <DependentUpon>201504262032545_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -25,55 +25,58 @@
             Changes are instant, across the website, database and mobile application.
         </p>
         <button class="btn btn-info" id="createButton">Create a new floorplan</button>
+        <table class="table table-striped" style="margin-top:20px;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.planName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.active)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.numObjects)
+                </th>
+                <th style="text-align:center">
+                    Tools
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.planName)
+                    </td>
+                    <td>
+                        @if (item.active)
+                        {
+                            <span class="label label-success">Yes</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">No</span>
+                        }
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numObjects)
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { id = "editButton", @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
     </div>
     <div class="col-md-4"></div>
 </div>
 
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.planName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.numObjects)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.planName)
-            </td>
-            <td>
-                @if (item.active)
-                {
-                    <span class="label label-success">Yes</span>
-                }
-                else
-                {
-                    <span class="label label-warning">No</span>
-                }
-            </td>
-
-
-
-            <td>
-                @Html.DisplayFor(modelItem => item.numObjects)
-            </td>
-            <td>
-                <div class="btn-group" role="group">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { id = "editButton", @class = "btn btn-info" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
-                </div>
-            </td>
-        </tr>
-    }
-
-</table>

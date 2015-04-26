@@ -61,6 +61,9 @@
             @Html.DisplayNameFor(model => model.vegan)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.wifi)
+        </th>
+        <th>
             <label>Main style</label>
         </th>
 
@@ -91,6 +94,16 @@
             </td>
             <td>
                 @if (item.vegan)
+                {
+                    <span class="label label-success">Yes</span>
+                }
+                else
+                {
+                    <span class="label label-danger">No</span>
+                }
+            </td>
+            <td>
+                @if (item.wifi)
                 {
                     <span class="label label-success">Yes</span>
                 }

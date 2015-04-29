@@ -54,8 +54,8 @@ namespace testLogin.Migrations
                     longitude=-6.450133, wheelchair=true,vegan=true, wifi=true, type1="Thai", type2="Chinese", 
                     phoneNum="(01) 458 8193", openClose="5 p.m. - 11 p.m.", bio="Expensive and overpriced fiery food", 
                     Email="lemongrass@eircom.net", appImage="https://bourguestblob.blob.core.windows.net/images/lemongrass.jpg"},
-                new Restaurant{id=7, restaurantName="IT Tallaght restaurant", latitude=53.286374, 
-                    longitude=-6.375106, wheelchair=false,vegan=true,wifi=false,type1="Traditional",
+                new Restaurant{id=7, restaurantName="IT Tallaght restaurant", latitude=53.2905866, 
+                    longitude=-6.3644945, wheelchair=false,vegan=true,wifi=false,type1="Traditional",
                     phoneNum="44554", openClose="4 p.m. - 10 p.m.", bio="Restaurant for testing purposes", 
                     Email="mark.lordan@gmail.com", appImage="https://bourguestblob.blob.core.windows.net/images/images/image_5d49b855-8d5c-4fe6-b20e-a27bd66ff36b.jpg"}
              };

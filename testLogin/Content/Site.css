@@ -17,6 +17,7 @@ body {
 .dl-horizontal dt {
     white-space: normal;
 }
+#ui-datepicker-div {display: none;}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,

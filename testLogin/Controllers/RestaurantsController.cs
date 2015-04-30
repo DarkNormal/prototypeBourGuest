@@ -215,8 +215,10 @@ namespace testLogin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             List<Bookings> bookings = db.Bookings.SqlQuery("SELECT * FROM bourguestMob.Bookings  WHERE restID = @rID ", new SqlParameter("@rID", id)).ToList();
-            if (bookings.Count == 0)
+            if (bookings.Count != 0)
             {
+                bookings.ForEach(r => db.Bookings.Remove(r));
+            }
                 List<int> planIDlist = new List<int>();
                 Restaurant restaurant = db.Restaurant.Find(id);
                 List<Floorplan> floorplan = db.Floorplan.SqlQuery("SELECT * FROM bourguestMob.Floorplan  WHERE restID = @rID ", new SqlParameter("@rID", id)).ToList();
@@ -237,7 +239,7 @@ namespace testLogin.Controllers
                 db.Restaurant.Remove(restaurant);
                 db.SaveChanges();
 
-            }
+            
             return RedirectToAction("Index");
         }
 
